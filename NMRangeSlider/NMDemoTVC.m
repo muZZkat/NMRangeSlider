@@ -31,7 +31,6 @@
     [self configureSetValueSlider];
     [self configureSteppedSlider];
     [self configureSteppedSliderAlternative];
-    [self configureLargerSlider];
 }
 
 
@@ -45,7 +44,6 @@
     [self setUpperLabel:nil];
     [self setLabelSlider:nil];
     [self setSetValuesSlider:nil];
-    [self setLargerValueSlider:nil];
     [super viewDidUnload];
 }
 
@@ -134,13 +132,13 @@
     lowerCenter.x = (self.labelSlider.lowerCenter.x + self.labelSlider.frame.origin.x);
     lowerCenter.y = (self.labelSlider.center.y - 30.0f);
     self.lowerLabel.center = lowerCenter;
-    self.lowerLabel.text = [NSString stringWithFormat:@"%d %%", (int)self.labelSlider.lowerValue];
+    self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.labelSlider.lowerValue];
     
     CGPoint upperCenter;
     upperCenter.x = (self.labelSlider.upperCenter.x + self.labelSlider.frame.origin.x);
-    upperCenter.y = (self.labelSlider.center.y + 30.0f);
+    upperCenter.y = (self.labelSlider.center.y - 30.0f);
     self.upperLabel.center = upperCenter;
-    self.upperLabel.text = [NSString stringWithFormat:@"%d %%", (int)self.labelSlider.upperValue];
+    self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.labelSlider.upperValue];
 }
 
 // Handle control value changed events just like a normal slider
@@ -191,34 +189,6 @@
     self.steppedContinuouslySlider.stepValueContinuously = YES;
     
 }
-
-
-// ------------------------------------------------------------------------------------------------------
-
-#pragma mark -
-#pragma mark - Stepped  Sliders
-
-- (void) configureLargerSlider
-{
-    UIImage* image = nil;
-    
-    image = [UIImage imageNamed:@"slider-large-trackBackground"];
-    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 8.0)];
-    self.largerValueSlider.trackBackgroundImage = image;
-    
-    image = [UIImage imageNamed:@"slider-large-track"];
-    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 4.0, 0.0, 4.0)];
-    self.largerValueSlider.trackImage = image;
-    
-    image = [UIImage imageNamed:@"slider-large-handle"];
-    self.largerValueSlider.lowerHandleImageNormal = image;
-    self.largerValueSlider.upperHandleImageNormal = image;
-    
-    image = [UIImage imageNamed:@"slider-large-handle-highlighted"];
-    self.largerValueSlider.lowerHandleImageHighlighted = image;
-    self.largerValueSlider.upperHandleImageHighlighted = image;
-}
-
 
 // ------------------------------------------------------------------------------------------------------
 

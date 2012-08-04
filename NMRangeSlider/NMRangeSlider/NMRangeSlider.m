@@ -389,19 +389,36 @@
 #pragma mark -
 #pragma mark - Touch handling
 
+// The handle size can be a little small, so i make it a little bigger
+// TODO: Do it the correct way. I think wwdc 2012 had a video on it...
+- (CGRect) touchRectForHandle:(UIImageView*) handleImageView
+{
+    float xPadding = 10;
+    float yPadding = 10; //(self.bounds.size.height-touchRect.size.height)/2.0f
+    
+    CGRect touchRect = handleImageView.frame;
+    touchRect.origin.x -= xPadding/2.0;
+    touchRect.origin.y -= yPadding/2.0;
+    touchRect.size.height += xPadding;
+    touchRect.size.width += yPadding;
+    return touchRect;
+}
+
 -(BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint touchPoint = [touch locationInView:self];
     
+    
     //Check both buttons upper and lower thumb handles because
     //they could be on top of each other.
     
-    if(CGRectContainsPoint(_lowerHandle.frame, touchPoint))
+    if(CGRectContainsPoint([self touchRectForHandle:_lowerHandle], touchPoint))
     {
         _lowerHandle.highlighted = YES;
         _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
     }
-    if(CGRectContainsPoint(_upperHandle.frame, touchPoint))
+    
+    if(CGRectContainsPoint([self touchRectForHandle:_upperHandle], touchPoint))
     {
         _upperHandle.highlighted = YES;
         _upperTouchOffset = touchPoint.x - _upperHandle.center.x;

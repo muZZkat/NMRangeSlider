@@ -2,8 +2,8 @@
 //  RangeSlider.m
 //  RangeSlider
 //
-//  Created by Mal Curtis on 5/08/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by Murray Hughes on 04/08/2012
+//  Copyright 2011 Null Monkey Pty Ltd. All rights reserved.
 //
 
 #import "NMRangeSlider.h"
@@ -66,6 +66,8 @@
     _lowerValue = 0.0;
     _upperValue = 1.0;
 }
+
+// ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
 #pragma mark - Properties
@@ -166,16 +168,12 @@
     [self setLowerValue:NAN upperValue:upperValue animated:animated];
 }
 
-
 //ON-Demand images. If the images are not set, then the default values are loaded.
 
 - (UIImage *)trackBackgroundImage
 {
-    NSLog(@"trackBackgroundImage");
-    
     if(_trackBackgroundImage==nil)
     {
-        NSLog(@" - loading default");
         UIImage* image = [UIImage imageNamed:@"slider-default-trackBackground"];
         image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
         _trackBackgroundImage = image;
@@ -240,6 +238,7 @@
     return _upperHandleImageHighlighted;
 }
 
+// ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
 #pragma mark Math Math Math
@@ -334,6 +333,8 @@
 
 }
 
+// ------------------------------------------------------------------------------------------------------
+
 #pragma mark -
 #pragma mark - Layout
 
@@ -383,9 +384,10 @@
 }
 
 
+// ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
-#pragma mark - Touch handlign
+#pragma mark - Touch handling
 
 -(BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -413,8 +415,6 @@
 
 -(BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"_lowerValue=%g",_lowerValue);
-    
     if(!_lowerHandle.highlighted && !_upperHandle.highlighted ){
         return YES;
     }

@@ -305,6 +305,7 @@
             <relationships>
                 <relationship kind="action" name="labelSliderChanged:" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="labelSlider" candidateClass="NMRangeSlider"/>
+                <relationship kind="outlet" name="largerValueSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="lowerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="metalSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="setValuesSlider" candidateClass="NMRangeSlider"/>

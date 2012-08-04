@@ -14,10 +14,10 @@
 // default 0.0
 @property(assign, nonatomic) float minimumValue;
 
-// default 0.0
+// default 1.0
 @property(assign, nonatomic) float maximumValue;
 
-// default 0.0. This is the minimum distance between betweent the upper and lower values
+// default 0.0. This is the minimum distance between between the upper and lower values
 @property(assign, nonatomic) float minimumRange;
 
 // default 0.0 (disabled)
@@ -33,15 +33,21 @@
 
 // default 0.0. this value will be pinned to min/max
 @property(assign, nonatomic) float lowerValue;
-@property(readonly, nonatomic) CGPoint lowerCenter;
 
 // default 1.0. this value will be pinned to min/max
 @property(assign, nonatomic) float upperValue;
+
+// center location for the lower handle control
+@property(readonly, nonatomic) CGPoint lowerCenter;
+
+// center location for the upper handle control
 @property(readonly, nonatomic) CGPoint upperCenter;
 
 
 // Images, these should be set before the control is displayed.
 // If they are not set, then the default images are used.
+// eg viewDidLoad
+
 
 //Probably should add support for all control states... Anyone?
 

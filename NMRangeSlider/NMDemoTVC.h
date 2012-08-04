@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet NMRangeSlider *steppedSlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *steppedContinuouslySlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *setValuesSlider;
+@property (weak, nonatomic) IBOutlet NMRangeSlider *largerValueSlider;
 
 @property (weak, nonatomic) IBOutlet NMRangeSlider *labelSlider;
 @property (weak, nonatomic) IBOutlet UILabel *lowerLabel;

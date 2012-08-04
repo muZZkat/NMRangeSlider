@@ -2,8 +2,8 @@
 //  NMAppDelegate.m
 //  NMRangeSlider
 //
-//  Created by Murray Hughes on 4/08/12.
-//  Copyright (c) 2012 Null Monkey. All rights reserved.
+//  Created by Murray Hughes on 04/08/2012
+//  Copyright 2011 Null Monkey Pty Ltd. All rights reserved.
 //
 
 #import "NMAppDelegate.h"

@@ -2,9 +2,10 @@
 //  NMDemoTVC.m
 //  NMRangeSlider
 //
-//  Created by Murray Hughes on 4/08/12.
-//  Copyright (c) 2012 Null Monkey. All rights reserved.
+//  Created by Murray Hughes on 04/08/2012
+//  Copyright 2011 Null Monkey Pty Ltd. All rights reserved.
 //
+
 
 #import "NMDemoTVC.h"
 
@@ -19,6 +20,7 @@
 
 #pragma mark -
 #pragma mark - View LifeCycle
+@synthesize largerValueSlider;
 
 - (void)viewDidLoad
 {
@@ -29,6 +31,7 @@
     [self configureSetValueSlider];
     [self configureSteppedSlider];
     [self configureSteppedSliderAlternative];
+    [self configureLargerSlider];
 }
 
 
@@ -42,6 +45,7 @@
     [self setUpperLabel:nil];
     [self setLabelSlider:nil];
     [self setSetValuesSlider:nil];
+    [self setLargerValueSlider:nil];
     [super viewDidUnload];
 }
 
@@ -51,6 +55,7 @@
     
     [self updateSliderLabels];
     [self updateSetValuesSlider];
+    
 }
 
 
@@ -187,6 +192,34 @@
     
 }
 
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Stepped  Sliders
+
+- (void) configureLargerSlider
+{
+    UIImage* image = nil;
+    
+    image = [UIImage imageNamed:@"slider-large-trackBackground"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 8.0)];
+    self.largerValueSlider.trackBackgroundImage = image;
+    
+    image = [UIImage imageNamed:@"slider-large-track"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 4.0, 0.0, 4.0)];
+    self.largerValueSlider.trackImage = image;
+    
+    image = [UIImage imageNamed:@"slider-large-handle"];
+    self.largerValueSlider.lowerHandleImageNormal = image;
+    self.largerValueSlider.upperHandleImageNormal = image;
+    
+    image = [UIImage imageNamed:@"slider-large-handle-highlighted"];
+    self.largerValueSlider.lowerHandleImageHighlighted = image;
+    self.largerValueSlider.upperHandleImageHighlighted = image;
+}
+
+
 // ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
@@ -200,6 +233,8 @@
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
+
+
 
 // ------------------------------------------------------------------------------------------------------
 

@@ -92,7 +92,7 @@
 		EC36F92715CD0B96009A1A04 = {
 			isa = PBXGroup;
 			children = (
-				EC36F93C15CD0B96009A1A04 /* NMRangeSlider */,
+				EC36F93C15CD0B96009A1A04 /* NMRangeSlider-Demo */,
 				EC36F93515CD0B96009A1A04 /* Frameworks */,
 				EC36F93315CD0B96009A1A04 /* Products */,
 			);
@@ -116,7 +116,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EC36F93C15CD0B96009A1A04 /* NMRangeSlider */ = {
+		EC36F93C15CD0B96009A1A04 /* NMRangeSlider-Demo */ = {
 			isa = PBXGroup;
 			children = (
 				EC36F99115CE05CB009A1A04 /* Images */,
@@ -128,7 +128,7 @@
 				EC36F97A15CD0F30009A1A04 /* NMDemoTVC.m */,
 				EC36F93D15CD0B96009A1A04 /* Supporting Files */,
 			);
-			path = NMRangeSlider;
+			path = "NMRangeSlider-Demo";
 			sourceTree = "<group>";
 		};
 		EC36F93D15CD0B96009A1A04 /* Supporting Files */ = {
@@ -152,7 +152,8 @@
 				EC36F96615CD0BF8009A1A04 /* NMRangeSlider.h */,
 				EC36F96715CD0BF8009A1A04 /* NMRangeSlider.m */,
 			);
-			path = NMRangeSlider;
+			name = NMRangeSlider;
+			path = ../NMRangeSlider;
 			sourceTree = "<group>";
 		};
 		EC36F95415CD0BF8009A1A04 /* DefaultTheme */ = {
@@ -359,8 +360,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NMRangeSlider/NMRangeSlider-Prefix.pch";
-				INFOPLIST_FILE = "NMRangeSlider/NMRangeSlider-Info.plist";
+				GCC_PREFIX_HEADER = "NMRangeSlider-Demo/NMRangeSlider-Prefix.pch";
+				INFOPLIST_FILE = "NMRangeSlider-Demo/NMRangeSlider-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -370,8 +371,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NMRangeSlider/NMRangeSlider-Prefix.pch";
-				INFOPLIST_FILE = "NMRangeSlider/NMRangeSlider-Info.plist";
+				GCC_PREFIX_HEADER = "NMRangeSlider-Demo/NMRangeSlider-Prefix.pch";
+				INFOPLIST_FILE = "NMRangeSlider-Demo/NMRangeSlider-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

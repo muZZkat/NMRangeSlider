@@ -17,5 +17,3 @@ See the demo application for some examples on how the to configure the slider.
 # Licence
 
 This Code is released under the MIT License.
-
-

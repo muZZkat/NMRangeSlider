@@ -89,6 +89,7 @@
 		EC36F9CE15CE3590009A1A04 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		EC36F9CF15CE3590009A1A04 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		EC36F9D015CE3590009A1A04 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		ECF5E23E15CE798C00C30915 /* TAG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TAG; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +157,7 @@
 				EC36F94215CD0B96009A1A04 /* main.m */,
 				EC36F94415CD0B96009A1A04 /* NMRangeSlider-Prefix.pch */,
 				EC36F97C15CD2BD5009A1A04 /* LICENCE */,
+				ECF5E23E15CE798C00C30915 /* TAG */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

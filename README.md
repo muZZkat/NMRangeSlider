@@ -11,9 +11,13 @@ In addition to the regular UISlider features it can:
 
 See the demo application for some examples on how the to configure the slider.
 
-[@muzzkat]
+## Authors
 
+* Murray Hughes ([@muzzkat](https://twitter.com/muzzkat))
 
-# Licence
+## License
 
-This Code is released under the MIT License.
+Copyright 2012 Null Monkey Pty Ltd
+
+Licensed under the MIT License, enjoy!
+

@@ -1,4 +1,7 @@
+
 # NMRangeSlider
+
+* * * * * * * * * * *
 
 NMRangeSlider is custom iOS control that gives you a UISlider like UI for selecting a range of values.
 
@@ -10,6 +13,8 @@ In addition to the regular UISlider features it can:
 * Access to the centre location of handle image. This can be used to arrange subviews.
 
 See the demo application for some examples on how the to configure the slider.
+
+# ![Screenshot](https://raw.github.com/wiki/muZZkat/NMRangeSlider/NMRangeSlider-Screenshot.png)
 
 ## Authors
 

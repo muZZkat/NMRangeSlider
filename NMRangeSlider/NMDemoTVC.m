@@ -20,7 +20,6 @@
 
 #pragma mark -
 #pragma mark - View LifeCycle
-@synthesize largerValueSlider;
 
 - (void)viewDidLoad
 {

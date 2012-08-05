@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="lKo-U9-UYs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12A269" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
@@ -11,9 +11,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4v-jO-gTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="lKo-U9-UYs" customClass="NMDemoTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Ot3-ln-JyQ">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <sections>
                             <tableViewSection id="Xk1-HI-PUH">
                                 <cells>
@@ -284,6 +284,20 @@
                             <outlet property="delegate" destination="lKo-U9-UYs" id="bIY-Jv-ojA"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="efd-eN-yNh">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="46f-eR-PxI">
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" image="navbar-nullmonkey-title.png" id="Ow8-FF-Qns">
+                                    <rect key="frame" x="0.0" y="1" width="200" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="labelSlider" destination="LaU-9x-AZw" id="M8C-5R-5wH"/>
                         <outlet property="lowerLabel" destination="Ojw-yC-dJd" id="ccz-Fg-5Nx"/>
@@ -296,16 +310,37 @@
                     </connections>
                 </tableViewController>
             </objects>
+            <point key="canvasLocation" x="798" y="97"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mpn-5O-gwU">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XJA-bx-Pe2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="COa-Gf-kKZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="799-XK-cre">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lKo-U9-UYs" kind="relationship" relationship="rootViewController" id="8pW-DK-YdO"/>
+                    </connections>
+                </navigationController>
+            </objects>
             <point key="canvasLocation" x="272" y="97"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="navbar-nullmonkey-title.png" width="154" height="25"/>
+    </resources>
     <classes>
         <class className="NMDemoTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NMDemoTVC.h"/>
             <relationships>
                 <relationship kind="action" name="labelSliderChanged:" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="labelSlider" candidateClass="NMRangeSlider"/>
-                <relationship kind="outlet" name="largerValueSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="lowerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="metalSlider" candidateClass="NMRangeSlider"/>
                 <relationship kind="outlet" name="setValuesSlider" candidateClass="NMRangeSlider"/>

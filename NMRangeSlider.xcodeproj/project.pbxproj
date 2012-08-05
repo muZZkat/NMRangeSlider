@@ -32,8 +32,8 @@
 		EC36F97715CD0D53009A1A04 /* slider-default-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36F95B15CD0BF8009A1A04 /* slider-default-trackBackground.png */; };
 		EC36F97815CD0D53009A1A04 /* slider-default_trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36F95C15CD0BF8009A1A04 /* slider-default_trackBackground@2x.png */; };
 		EC36F97B15CD0F30009A1A04 /* NMDemoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC36F97A15CD0F30009A1A04 /* NMDemoTVC.m */; };
-		EC36F97D15CD2BD5009A1A04 /* LICENCE in Resources */ = {isa = PBXBuildFile; fileRef = EC36F97C15CD2BD5009A1A04 /* LICENCE */; };
-		EC36F97F15CD2C4D009A1A04 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EC36F97E15CD2C4D009A1A04 /* README.md */; };
+		EC36F99E15CE0955009A1A04 /* navbar-nullmonkey-title.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36F99C15CE0955009A1A04 /* navbar-nullmonkey-title.png */; };
+		EC36F99F15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36F99D15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,9 @@
 		EC36F97915CD0F30009A1A04 /* NMDemoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMDemoTVC.h; sourceTree = "<group>"; };
 		EC36F97A15CD0F30009A1A04 /* NMDemoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMDemoTVC.m; sourceTree = "<group>"; };
 		EC36F97C15CD2BD5009A1A04 /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = SOURCE_ROOT; };
-		EC36F97E15CD2C4D009A1A04 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		EC36F99B15CE0900009A1A04 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		EC36F99C15CE0955009A1A04 /* navbar-nullmonkey-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-nullmonkey-title.png"; sourceTree = "<group>"; };
+		EC36F99D15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-nullmonkey-title@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		EC36F93C15CD0B96009A1A04 /* NMRangeSlider */ = {
 			isa = PBXGroup;
 			children = (
+				EC36F99115CE05CB009A1A04 /* Images */,
 				EC36F95315CD0BA9009A1A04 /* NMRangeSlider */,
 				EC36F94515CD0B96009A1A04 /* NMAppDelegate.h */,
 				EC36F94615CD0B96009A1A04 /* NMAppDelegate.m */,
@@ -135,7 +138,7 @@
 				EC36F94215CD0B96009A1A04 /* main.m */,
 				EC36F94415CD0B96009A1A04 /* NMRangeSlider-Prefix.pch */,
 				EC36F97C15CD2BD5009A1A04 /* LICENCE */,
-				EC36F97E15CD2C4D009A1A04 /* README.md */,
+				EC36F99B15CE0900009A1A04 /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,6 +182,15 @@
 				EC36F96515CD0BF8009A1A04 /* slider-metal-trackBackground@2x.png */,
 			);
 			path = MetalTheme;
+			sourceTree = "<group>";
+		};
+		EC36F99115CE05CB009A1A04 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EC36F99C15CE0955009A1A04 /* navbar-nullmonkey-title.png */,
+				EC36F99D15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,8 +263,8 @@
 				EC36F97615CD0D53009A1A04 /* slider-default-track@2x.png in Resources */,
 				EC36F97715CD0D53009A1A04 /* slider-default-trackBackground.png in Resources */,
 				EC36F97815CD0D53009A1A04 /* slider-default_trackBackground@2x.png in Resources */,
-				EC36F97D15CD2BD5009A1A04 /* LICENCE in Resources */,
-				EC36F97F15CD2C4D009A1A04 /* README.md in Resources */,
+				EC36F99E15CE0955009A1A04 /* navbar-nullmonkey-title.png in Resources */,
+				EC36F99F15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +394,7 @@
 				EC36F95215CD0B96009A1A04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

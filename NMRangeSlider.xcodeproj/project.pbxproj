@@ -34,6 +34,7 @@
 		EC36F97B15CD0F30009A1A04 /* NMDemoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC36F97A15CD0F30009A1A04 /* NMDemoTVC.m */; };
 		EC36F99E15CE0955009A1A04 /* navbar-nullmonkey-title.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36F99C15CE0955009A1A04 /* navbar-nullmonkey-title.png */; };
 		EC36F99F15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC36F99D15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png */; };
+		EC36F9A615CE1295009A1A04 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EC36F9A515CE1295009A1A04 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,9 +70,9 @@
 		EC36F97915CD0F30009A1A04 /* NMDemoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMDemoTVC.h; sourceTree = "<group>"; };
 		EC36F97A15CD0F30009A1A04 /* NMDemoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMDemoTVC.m; sourceTree = "<group>"; };
 		EC36F97C15CD2BD5009A1A04 /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = SOURCE_ROOT; };
-		EC36F99B15CE0900009A1A04 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		EC36F99C15CE0955009A1A04 /* navbar-nullmonkey-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-nullmonkey-title.png"; sourceTree = "<group>"; };
 		EC36F99D15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-nullmonkey-title@2x.png"; sourceTree = "<group>"; };
+		EC36F9A515CE1295009A1A04 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,12 +134,12 @@
 		EC36F93D15CD0B96009A1A04 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC36F9A515CE1295009A1A04 /* README.md */,
 				EC36F93E15CD0B96009A1A04 /* NMRangeSlider-Info.plist */,
 				EC36F93F15CD0B96009A1A04 /* InfoPlist.strings */,
 				EC36F94215CD0B96009A1A04 /* main.m */,
 				EC36F94415CD0B96009A1A04 /* NMRangeSlider-Prefix.pch */,
 				EC36F97C15CD2BD5009A1A04 /* LICENCE */,
-				EC36F99B15CE0900009A1A04 /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -265,6 +266,7 @@
 				EC36F97815CD0D53009A1A04 /* slider-default_trackBackground@2x.png in Resources */,
 				EC36F99E15CE0955009A1A04 /* navbar-nullmonkey-title.png in Resources */,
 				EC36F99F15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png in Resources */,
+				EC36F9A615CE1295009A1A04 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

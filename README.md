@@ -3,7 +3,7 @@
 
 * * * * * * * * * * *
 
-NMRangeSlider is custom iOS control that gives you a UISlider like UI for selecting a range of values.
+NMRangeSlider is custom iOS control that gives you a UISlider like UI for selecting a range of values. This project was inspried by: https://github.com/buildmobile/iosrangeslider.
 
 The range slider can be configured using a set of images in much the same way as UISlider. (Background, Track and Thumbs)
 
@@ -15,6 +15,15 @@ In addition to the regular UISlider features it can:
 See the demo application for some examples on how the to configure the slider.
 
 # ![Screenshot](https://raw.github.com/wiki/muZZkat/NMRangeSlider/NMRangeSlider-Screenshot.png)
+
+## TODO
+
+If anyone would like to help here a few things I would like to add:
+
+* Custom images for other control states. UISlider lets the user set different images for any number of UIControlStates.
+* Have a designer provide a few more sample graphics.
+* Ability to set a tint colour that is applied to the default images (or drawn using CoreGraphics)
+
 
 ## Authors
 

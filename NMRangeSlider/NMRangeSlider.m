@@ -508,4 +508,17 @@
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
+
+#pragma mark -
+#pragma mark Accessibility
+
+- (void)setAccessibilityLabelOfLowerHandle:(NSString*)lowerHandleLabel
+                            andUpperHandle:(NSString*)upperHandleLabel {
+    [self.lowerHandle setIsAccessibilityElement:YES];
+    [self.lowerHandle setAccessibilityLabel:lowerHandleLabel];
+    
+    [self.upperHandle setIsAccessibilityElement:YES];
+    [self.upperHandle setAccessibilityLabel:upperHandleLabel];
+}
+
 @end

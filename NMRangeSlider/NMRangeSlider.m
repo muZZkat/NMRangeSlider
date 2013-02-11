@@ -65,6 +65,9 @@
     
     _lowerValue = 0.0;
     _upperValue = 1.0;
+    
+    _lowerMaximumValue = NAN;
+    _upperMinimumValue = NAN;
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -92,6 +95,11 @@
     }
     
     value = MAX(value, _minimumValue);
+    
+    if (!isnan(_lowerMaximumValue)) {
+        value = MIN(value, _lowerMaximumValue);
+    }
+    
     value = MIN(value, _upperValue - _minimumRange);
     
     _lowerValue = value;
@@ -109,6 +117,11 @@
     }
 
     value = MIN(value, _maximumValue);
+    
+    if (!isnan(_upperMinimumValue)) {
+        value = MAX(value, _upperMinimumValue);
+    }
+    
     value = MAX(value, _lowerValue+_minimumRange);
     
     _upperValue = value;

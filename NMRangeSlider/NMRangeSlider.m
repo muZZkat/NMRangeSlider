@@ -329,7 +329,7 @@
     float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
     thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
     
-    return thumbRect;
+    return CGRectIntegral(thumbRect);
 
 }
 

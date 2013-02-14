@@ -383,6 +383,10 @@
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
 }
 
+- (CGSize)intrinsicContentSize
+{
+   return CGSizeMake(UIViewNoIntrinsicMetric, MAX(self.lowerHandleImageNormal.size.height, self.upperHandleImageNormal.size.height));
+}
 
 // ------------------------------------------------------------------------------------------------------
 

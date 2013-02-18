@@ -397,14 +397,11 @@
 // TODO: Do it the correct way. I think wwdc 2012 had a video on it...
 - (CGRect) touchRectForHandle:(UIImageView*) handleImageView
 {
-    float xPadding = 10;
-    float yPadding = 10; //(self.bounds.size.height-touchRect.size.height)/2.0f
-    
-    CGRect touchRect = handleImageView.frame;
-    touchRect.origin.x -= xPadding/2.0;
-    touchRect.origin.y -= yPadding/2.0;
-    touchRect.size.height += xPadding;
-    touchRect.size.width += yPadding;
+    float xPadding = 5;
+    float yPadding = 5; //(self.bounds.size.height-touchRect.size.height)/2.0f
+
+    // expands rect by xPadding in both x-directions, and by yPadding in both y-directions
+    CGRect touchRect = CGRectInset(handleImageView.frame, -xPadding, -yPadding);;
     return touchRect;
 }
 

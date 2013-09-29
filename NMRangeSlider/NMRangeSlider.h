@@ -43,6 +43,12 @@
 // center location for the upper handle control
 @property(readonly, nonatomic) CGPoint upperCenter;
 
+// maximum value for left thumb
+@property(assign, nonatomic) float lowerMaximumValue;
+
+// minimum value for right thumb
+@property(assign, nonatomic) float upperMinimumValue;
+
 
 // Images, these should be set before the control is displayed.
 // If they are not set, then the default images are used.

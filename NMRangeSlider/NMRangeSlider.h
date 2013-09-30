@@ -65,7 +65,12 @@
 
 @property(retain, nonatomic) UIImage* trackImage;
 
+// track image when lower value is higher than the upper value (eg. when minimum range is negative
+@property(retain, nonatomic) UIImage* trackCrossedOverImage;
+
 @property(retain, nonatomic) UIImage* trackBackgroundImage;
+
+
 
 
 //Setting the lower/upper values with an animation :-)

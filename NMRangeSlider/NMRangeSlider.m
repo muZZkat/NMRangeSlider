@@ -28,6 +28,15 @@
 #pragma mark -
 #pragma mark - Constructors
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self configureView];
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -94,6 +103,7 @@
         value = roundf(value / _stepValueInternal) * _stepValueInternal;
     }
     
+    value = MIN(value, _maximumValue);
     value = MAX(value, _minimumValue);
     
     if (!isnan(_lowerMaximumValue)) {
@@ -116,6 +126,7 @@
         value = roundf(value / _stepValueInternal) * _stepValueInternal;
     }
 
+    value = MAX(value, _minimumValue);
     value = MIN(value, _maximumValue);
     
     if (!isnan(_upperMinimumValue)) {
@@ -205,6 +216,19 @@
     }
     
     return _trackImage;
+}
+
+
+- (UIImage *)trackCrossedOverImage
+{
+    if(_trackCrossedOverImage==nil)
+    {
+        UIImage* image = [UIImage imageNamed:@"slider-default-trackCrossedOver"];
+        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+        _trackCrossedOverImage = image;
+    }
+    
+    return _trackCrossedOverImage;
 }
 
 - (UIImage *)lowerHandleImageNormal
@@ -304,6 +328,18 @@
     return retValue;
 }
 
+- (UIImage*) trackImageForCurrentValues
+{
+    if(self.lowerValue <= self.upperValue)
+    {
+        return self.trackImage;
+    }
+    else
+    {
+        return self.trackCrossedOverImage;
+    }
+}
+
 //returns the rect for the background image
  -(CGRect) trackBackgroundRect
 {
@@ -361,7 +397,7 @@
     
     //------------------------------
     // Track
-    self.track = [[UIImageView alloc] initWithImage:self.trackImage];
+    self.track = [[UIImageView alloc] initWithImage:[self trackImageForCurrentValues]];
     self.track.frame = [self trackRect];
     
     //------------------------------
@@ -392,6 +428,7 @@
 
     self.trackBackground.frame = [self trackBackgroundRect];
     self.track.frame = [self trackRect];
+    self.track.image = [self trackImageForCurrentValues];
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
 }

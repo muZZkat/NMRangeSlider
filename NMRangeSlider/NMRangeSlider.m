@@ -77,6 +77,8 @@
     
     _lowerMaximumValue = NAN;
     _upperMinimumValue = NAN;
+    _upperHandleHidden = NO;
+    _lowerHandleHidden = NO;
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -190,6 +192,18 @@
 - (void)setUpperValue:(float)upperValue animated:(BOOL) animated
 {
     [self setLowerValue:NAN upperValue:upperValue animated:animated];
+}
+
+- (void) setLowerHandleHidden:(BOOL)lowerHandleHidden
+{
+    _lowerHandleHidden = lowerHandleHidden;
+    [self setNeedsLayout];
+}
+
+- (void) setUpperHandleHidden:(BOOL)upperHandleHidden
+{
+    _upperHandleHidden = upperHandleHidden;
+    [self setNeedsLayout];
 }
 
 //ON-Demand images. If the images are not set, then the default values are loaded.
@@ -318,9 +332,12 @@
     {
         retValue.size.height=self.bounds.size.height;
     }
-
-    float xLowerValue = ((self.bounds.size.width - _lowerHandle.frame.size.width) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(_lowerHandle.frame.size.width/2.0f);
-    float xUpperValue = ((self.bounds.size.width - _upperHandle.frame.size.width) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(_upperHandle.frame.size.width/2.0f);
+    
+    float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
+    float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
+    
+    float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
+    float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
     
     retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
     retValue.size.width = xUpperValue-xLowerValue;
@@ -424,13 +441,33 @@
         _haveAddedSubviews=YES;
         [self addSubviews];
     }
-
+    
+    if(_lowerHandleHidden)
+    {
+        _lowerValue = _minimumValue;
+    }
+    
+    if(_upperHandleHidden)
+    {
+        _upperValue = _maximumValue;
+    }
 
     self.trackBackground.frame = [self trackBackgroundRect];
     self.track.frame = [self trackRect];
     self.track.image = [self trackImageForCurrentValues];
+
+    // Layout the lower handle
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
+    self.lowerHandle.image = self.lowerHandleHidden ? nil : self.lowerHandleImageNormal;
+    self.lowerHandle.highlightedImage = self.lowerHandleHidden ? nil : self.lowerHandleImageHighlighted;
+    self.lowerHandle.userInteractionEnabled = !self.lowerHandleHidden;
+    
+    // Layoput the upper handle
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
+    self.upperHandle.image = self.upperHandleHidden ? nil : self.upperHandleImageNormal;
+    self.upperHandle.highlightedImage = self.upperHandleHidden ? nil : self.upperHandleImageHighlighted;
+    self.upperHandle.userInteractionEnabled = !self.upperHandleHidden;
+    
 }
 
 - (CGSize)intrinsicContentSize

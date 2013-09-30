@@ -50,6 +50,9 @@
 @property(assign, nonatomic) float upperMinimumValue;
 
 
+@property (assign, nonatomic) BOOL lowerHandleHidden;
+@property (assign, nonatomic) BOOL upperHandleHidden;
+
 // Images, these should be set before the control is displayed.
 // If they are not set, then the default images are used.
 // eg viewDidLoad

@@ -11,6 +11,8 @@ In addition to the regular UISlider features it can:
 
 * Handle stepped values. The handles will snap to points along the slider with a couple different options
 * Access to the centre location of handle image. This can be used to arrange subviews.
+* (New) Disable lower handle so it behaves like a regular UISlider but still use other features.
+* (New) Set a negative min range so the thumbs can cross over. (with custom track image)
 
 See the demo application for some examples on how the to configure the slider.
 

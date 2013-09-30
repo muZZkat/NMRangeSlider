@@ -26,23 +26,18 @@
     [super viewDidLoad];
     [self configureStandardSlider];
     [self configureMetalSlider];
+    [self configureSingleThumbSlider];
     [self configureLabelSlider];
     [self configureSetValueSlider];
     [self configureSteppedSlider];
     [self configureSteppedSliderAlternative];
+    [self configureCrossOverSlider];
+    [self configureProgramically];
 }
 
 
 - (void)viewDidUnload
 {
-    [self setStandardSlider:nil];
-    [self setMetalSlider:nil];
-    [self setSteppedSlider:nil];
-    [self setSteppedContinuouslySlider:nil];
-    [self setLowerLabel:nil];
-    [self setUpperLabel:nil];
-    [self setLabelSlider:nil];
-    [self setSetValuesSlider:nil];
     [super viewDidUnload];
 }
 
@@ -65,6 +60,7 @@
 
 #pragma mark -
 #pragma mark - Standard Slider
+
 
 - (void) configureStandardSlider
 {
@@ -105,6 +101,26 @@
     
     self.metalSlider.lowerValue = 0.2;
     self.metalSlider.upperValue = 0.8;
+}
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Standard Slider
+
+
+- (void) configureSingleThumbSlider
+{
+    // Disabling the lower slider lets you use the control as a regular UISlider but with
+    // the added themes and stepping functions.
+    
+    [self configureMetalThemeForSlider:self.singleThumbSlider];
+    
+    self.singleThumbSlider.upperValue = 0.53;
+    self.singleThumbSlider.lowerHandleHidden = YES;
+    self.singleThumbSlider.stepValue = 0.2;
+    self.singleThumbSlider.stepValueContinuously = YES;
+    
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -179,7 +195,6 @@
 - (void) configureSteppedSlider
 {
     self.steppedSlider.stepValue = 0.2;
-    self.steppedContinuouslySlider.stepValueContinuously = NO;
 }
 
 - (void) configureSteppedSliderAlternative
@@ -187,6 +202,37 @@
     self.steppedContinuouslySlider.stepValue = 0.2;
     self.steppedContinuouslySlider.stepValueContinuously = YES;
     
+}
+
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Crossover Slider
+
+
+- (void) configureCrossOverSlider
+{
+    self.crossOverSlider.lowerValue = 0.23;
+    self.crossOverSlider.upperValue = 0.53;
+    
+    // you can set a negative minimum range so the lower and upper values can actually
+    // cross over. When they cross over, the track changes color. Custom images can be set.
+    self.crossOverSlider.minimumRange = -1.0;
+}
+
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Programic Sliders
+
+- (void) configureProgramically
+{
+    NMRangeSlider* rangeSlider = [[NMRangeSlider alloc] initWithFrame:CGRectMake(16, 6, 275, 32)];
+    rangeSlider.lowerValue = 0.54;
+    rangeSlider.upperValue = 0.94;
+    [self.programaticallyContainerCell addSubview:rangeSlider];
 }
 
 // ------------------------------------------------------------------------------------------------------

@@ -49,6 +49,11 @@
 // minimum value for right thumb
 @property(assign, nonatomic) float upperMinimumValue;
 
+// default 5.0. Used to change the touch area for the handles
+@property (assign, nonatomic) BOOL lowerHandleHorizontalTouchPadding;
+@property (assign, nonatomic) BOOL lowerHandleVerticalTouchPadding;
+@property (assign, nonatomic) BOOL upperHandleHorizontalTouchPadding;
+@property (assign, nonatomic) BOOL upperHandleVerticalTouchPadding;
 
 @property (assign, nonatomic) BOOL lowerHandleHidden;
 @property (assign, nonatomic) BOOL upperHandleHidden;

@@ -48,6 +48,11 @@
     [self updateSliderLabels];
     [self updateSetValuesSlider];
     
+    if([self.view respondsToSelector:@selector(setTintColor:)])
+    {
+        self.view.tintColor = [UIColor orangeColor];
+    }
+    
 }
 
 
@@ -229,7 +234,7 @@
 
 - (void) configureProgramically
 {
-    NMRangeSlider* rangeSlider = [[NMRangeSlider alloc] initWithFrame:CGRectMake(16, 6, 275, 32)];
+    NMRangeSlider* rangeSlider = [[NMRangeSlider alloc] initWithFrame:CGRectMake(16, 6, 275, 34)];
     rangeSlider.lowerValue = 0.54;
     rangeSlider.upperValue = 0.94;
     [self.programaticallyContainerCell addSubview:rangeSlider];

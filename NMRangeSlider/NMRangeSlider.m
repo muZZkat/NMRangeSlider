@@ -8,6 +8,21 @@
 
 #import "NMRangeSlider.h"
 
+
+#define IS_PRE_IOS7() (DeviceSystemMajorVersion() < 7)
+
+NSUInteger DeviceSystemMajorVersion() {
+    static NSUInteger _deviceSystemMajorVersion = -1;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion]
+                                       componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
+    });
+    return _deviceSystemMajorVersion;
+}
+
+
+
 @interface NMRangeSlider ()
 {
     float _lowerTouchOffset;
@@ -22,6 +37,7 @@
 @property (retain, nonatomic) UIImageView* trackBackground;
 
 @end
+
 
 @implementation NMRangeSlider
 
@@ -212,9 +228,18 @@
 {
     if(_trackBackgroundImage==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-trackBackground"];
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
-        _trackBackgroundImage = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-trackBackground"];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
+            _trackBackgroundImage = image;
+        }
+        else
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default7-trackBackground"];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
+            _trackBackgroundImage = image;
+        }
     }
     
     return _trackBackgroundImage;
@@ -224,9 +249,20 @@
 {
     if(_trackImage==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-track"];
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
-        _trackImage = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-track"];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+            _trackImage = image;
+        }
+        else
+        {
+            
+            UIImage* image = [UIImage imageNamed:@"slider-default7-track"];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
+            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            _trackImage = image;
+        }
     }
     
     return _trackImage;
@@ -237,9 +273,18 @@
 {
     if(_trackCrossedOverImage==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-trackCrossedOver"];
-        image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
-        _trackCrossedOverImage = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-trackCrossedOver"];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+            _trackCrossedOverImage = image;
+        }
+        else
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default7-trackCrossedOver"];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
+            _trackCrossedOverImage = image;
+        }
     }
     
     return _trackCrossedOverImage;
@@ -249,8 +294,17 @@
 {
     if(_lowerHandleImageNormal==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
-        _lowerHandleImageNormal = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
+            _lowerHandleImageNormal = image;
+        }
+        else
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            _lowerHandleImageNormal = image;
+        }
+
     }
     
     return _lowerHandleImageNormal;
@@ -260,8 +314,16 @@
 {
     if(_lowerHandleImageHighlighted==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
-        _lowerHandleImageHighlighted = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
+            _lowerHandleImageHighlighted = image;
+        }
+        else
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            _lowerHandleImageNormal = image;
+        }
     }
     
     return _lowerHandleImageHighlighted;
@@ -271,8 +333,16 @@
 {
     if(_upperHandleImageNormal==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
-        _upperHandleImageNormal = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
+            _upperHandleImageNormal = image;
+        }
+        else
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            _upperHandleImageNormal = image;
+        }
     }
     
     return _upperHandleImageNormal;
@@ -282,8 +352,16 @@
 {
     if(_upperHandleImageHighlighted==nil)
     {
-        UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
-        _upperHandleImageHighlighted = image;
+        if(IS_PRE_IOS7())
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
+            _upperHandleImageHighlighted = image;
+        }
+        else
+        {
+            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            _upperHandleImageNormal = image;
+        }
     }
     
     return _upperHandleImageHighlighted;

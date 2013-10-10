@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -41,7 +41,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="feo-qw-TfS" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -77,7 +77,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="nw3-P9-TiR" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -113,7 +113,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="qrN-O3-hFu" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -202,7 +202,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="OdM-tn-o1x" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -255,7 +255,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="DjS-dB-nvq" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -291,7 +291,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="kNU-cH-scq" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>
@@ -327,7 +327,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="ttW-BM-a9a" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="13" y="6" width="275" height="32"/>
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 </view>

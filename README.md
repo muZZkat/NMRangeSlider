@@ -17,7 +17,7 @@ In addition to the regular UISlider features it can:
 
 See the demo application for some examples on how the to configure the slider.
 
-# ![Screenshot](https://raw.github.com/muZZkat/NMRangeSlider/master/NMRangeSlider-Screenshot.png)
+# ![Screenshot](https://raw.github.com/muZZkat/NMRangeSlider/master/NMRangeSlider-ScreenShot.png)
 
 ## TODO
 

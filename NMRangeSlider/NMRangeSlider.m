@@ -404,9 +404,11 @@ NSUInteger DeviceSystemMajorVersion() {
 {
     CGRect retValue;
     
-    retValue.size = CGSizeMake(_trackImage.size.width, _trackImage.size.height);
+    UIImage* currentTrackImage = [self trackImageForCurrentValues];
     
-    if(_trackImage.capInsets.top || _trackImage.capInsets.bottom)
+    retValue.size = CGSizeMake(currentTrackImage.size.width, currentTrackImage.size.height);
+    
+    if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom)
     {
         retValue.size.height=self.bounds.size.height;
     }

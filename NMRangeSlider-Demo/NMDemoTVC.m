@@ -218,12 +218,13 @@
 
 - (void) configureCrossOverSlider
 {
-    self.crossOverSlider.lowerValue = 0.23;
-    self.crossOverSlider.upperValue = 0.53;
-    
     // you can set a negative minimum range so the lower and upper values can actually
     // cross over. When they cross over, the track changes color. Custom images can be set.
     self.crossOverSlider.minimumRange = -1.0;
+    
+    self.crossOverSlider.upperValue = 0.23;
+    self.crossOverSlider.lowerValue = 0.53;
+    
 }
 
 

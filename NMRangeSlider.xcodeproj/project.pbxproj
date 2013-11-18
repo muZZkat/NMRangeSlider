@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2F6E99F183A151000518E9A /* revealed-track.png in Resources */ = {isa = PBXBuildFile; fileRef = E2F6E99E183A151000518E9A /* revealed-track.png */; };
+		E2F6E9A1183A158100518E9A /* revealed-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2F6E9A0183A158100518E9A /* revealed-track@2x.png */; };
 		EC36F93715CD0B96009A1A04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93615CD0B96009A1A04 /* UIKit.framework */; };
 		EC36F93915CD0B96009A1A04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93815CD0B96009A1A04 /* Foundation.framework */; };
 		EC36F93B15CD0B96009A1A04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93A15CD0B96009A1A04 /* CoreGraphics.framework */; };
@@ -57,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2F6E99E183A151000518E9A /* revealed-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "revealed-track.png"; sourceTree = "<group>"; };
+		E2F6E9A0183A158100518E9A /* revealed-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "revealed-track@2x.png"; sourceTree = "<group>"; };
 		EC36F93215CD0B96009A1A04 /* NMRangeSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NMRangeSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC36F93615CD0B96009A1A04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC36F93815CD0B96009A1A04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -243,6 +247,8 @@
 				EC36F9D015CE3590009A1A04 /* Icon@2x.png */,
 				EC36F99C15CE0955009A1A04 /* navbar-nullmonkey-title.png */,
 				EC36F99D15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png */,
+				E2F6E99E183A151000518E9A /* revealed-track.png */,
+				E2F6E9A0183A158100518E9A /* revealed-track@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				EC6CCCC1180690AE00FBE743 /* slider-default7-trackBackground@2x.png in Resources */,
 				EC36F97215CD0D53009A1A04 /* slider-default-handle-highlighted@2x.png in Resources */,
 				EC4B675C17F8F1470054842C /* Default-568h@2x.png in Resources */,
+				E2F6E9A1183A158100518E9A /* revealed-track@2x.png in Resources */,
 				EC36F97315CD0D53009A1A04 /* slider-default-handle.png in Resources */,
 				EC36F97415CD0D53009A1A04 /* slider-default-handle@2x.png in Resources */,
 				EC36F97515CD0D53009A1A04 /* slider-default-track.png in Resources */,
@@ -339,6 +346,7 @@
 				EC36F97815CD0D53009A1A04 /* slider-default_trackBackground@2x.png in Resources */,
 				EC36F99E15CE0955009A1A04 /* navbar-nullmonkey-title.png in Resources */,
 				EC36F99F15CE0955009A1A04 /* navbar-nullmonkey-title@2x.png in Resources */,
+				E2F6E99F183A151000518E9A /* revealed-track.png in Resources */,
 				EC6CCCC7180690AE00FBE743 /* slider-default7-handle@2x.png in Resources */,
 				EC36F9A615CE1295009A1A04 /* README.md in Resources */,
 				EC4B675A17F8EDAA0054842C /* slider-default-trackCrossedOver@2x.png in Resources */,

@@ -32,6 +32,7 @@
     [self configureSteppedSlider];
     [self configureSteppedSliderAlternative];
     [self configureCrossOverSlider];
+    [self configureRevealedSlider];
     [self configureProgramically];
 }
 
@@ -227,6 +228,17 @@
     
 }
 
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Revealed Track Slider
+
+- (void) configureRevealedSlider
+{
+    self.revealedTrackSlider.revealedTrackImage = [UIImage imageNamed:@"revealed-track"];
+    self.revealedTrackSlider.lowerValue = 0.2;
+    self.revealedTrackSlider.upperValue = 0.8;
+}
 
 // ------------------------------------------------------------------------------------------------------
 

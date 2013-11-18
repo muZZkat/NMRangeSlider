@@ -68,6 +68,9 @@
 
 @property(retain, nonatomic) UIImage* trackImage;
 
+// Track image that is revealed instead of streached, by default this is null and ignored for backward compatibility.
+@property(retain, nonatomic) UIImage* revealedTrackImage;
+
 // track image when lower value is higher than the upper value (eg. when minimum range is negative
 @property(retain, nonatomic) UIImage* trackCrossedOverImage;
 

@@ -451,9 +451,15 @@ NSUInteger DeviceSystemMajorVersion() {
     float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
     
     //Crop the image
-    CGRect croppedImageRect = CGRectMake(xLowerValue, 0.0f, xUpperValue - xLowerValue, self.revealedTrackImage.size.height);
+    CGFloat imageScale = self.revealedTrackImage.scale;
+    CGRect croppedImageRect = CGRectMake(xLowerValue * imageScale,
+                                         0.0f,
+                                         (xUpperValue - xLowerValue) * imageScale,
+                                         self.revealedTrackImage.size.height * imageScale);
     CGImageRef croppedImageRef = CGImageCreateWithImageInRect([self.revealedTrackImage CGImage], croppedImageRect);
-    UIImage *croppedImage = [UIImage imageWithCGImage:croppedImageRef];
+    UIImage *croppedImage = [UIImage imageWithCGImage:croppedImageRef
+                                                scale:imageScale
+                                          orientation:self.revealedTrackImage.imageOrientation];
     CGImageRelease(croppedImageRef);
     
     return croppedImage;

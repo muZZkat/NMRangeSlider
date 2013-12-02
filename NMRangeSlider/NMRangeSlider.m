@@ -88,8 +88,8 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _continuous = YES;
     
-    _lowerValue = 0.0;
-    _upperValue = 1.0;
+    _lowerValue = _minimumValue;
+    _upperValue = _maximumValue;
     
     _lowerMaximumValue = NAN;
     _upperMinimumValue = NAN;

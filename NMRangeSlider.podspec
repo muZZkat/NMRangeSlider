@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/muZZkat/NMRangeSlider"
   s.license      = 'MIT'
   s.author       = { "Murray Hughes" => "email@address.com" }
-  s.source       = { :git => "https://github.com/mikrobi/NMRangeSlider.git" }
+  s.source       = { :git => "https://github.com/muZZkat/NMRangeSlider.git" }
   s.platform     = :ios
   s.source_files = 'NMRangeSlider/*.{h,m}'
   s.requires_arc = true

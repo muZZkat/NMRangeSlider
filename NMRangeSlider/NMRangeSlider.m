@@ -415,7 +415,6 @@ NSUInteger DeviceSystemMajorVersion() {
     
     float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
     float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
-    
     float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
     float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
     
@@ -427,14 +426,43 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (UIImage*) trackImageForCurrentValues
 {
-    if(self.lowerValue <= self.upperValue)
+    if (self.revealedTrackImage)
     {
-        return self.trackImage;
+        return [self revealedTrackImageForCurrentValues];
     }
     else
     {
-        return self.trackCrossedOverImage;
+        if(self.lowerValue <= self.upperValue)
+        {
+            return self.trackImage;
+        }
+        else
+        {
+            return self.trackCrossedOverImage;
+        }
     }
+}
+
+- (UIImage *) revealedTrackImageForCurrentValues {
+    //Get left and right x positions
+    float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
+    float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
+    float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
+    float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
+    
+    //Crop the image
+    CGFloat imageScale = self.revealedTrackImage.scale;
+    CGRect croppedImageRect = CGRectMake(xLowerValue * imageScale,
+                                         0.0f,
+                                         (xUpperValue - xLowerValue) * imageScale,
+                                         self.revealedTrackImage.size.height * imageScale);
+    CGImageRef croppedImageRef = CGImageCreateWithImageInRect([self.revealedTrackImage CGImage], croppedImageRect);
+    UIImage *croppedImage = [UIImage imageWithCGImage:croppedImageRef
+                                                scale:imageScale
+                                          orientation:self.revealedTrackImage.imageOrientation];
+    CGImageRelease(croppedImageRef);
+    
+    return croppedImage;
 }
 
 //returns the rect for the background image

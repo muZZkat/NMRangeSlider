@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="COa-Gf-kKZ">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--DemoTVC-->
@@ -336,10 +336,46 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="IOq-4k-49n">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Agd-mX-hJc" style="IBUITableViewCellStyleDefault" id="fEp-qo-uFX">
+                                        <rect key="frame" x="0.0" y="1060" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fEp-qo-uFX" id="uvU-G9-zUZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Revealed-Track" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Agd-mX-hJc">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DNy-8R-RPf">
+                                        <rect key="frame" x="0.0" y="1104" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DNy-8R-RPf" id="Olf-5J-Vju">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" id="GV7-I4-RT7" customClass="NMRangeSlider">
+                                                    <rect key="frame" x="13" y="6" width="275" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="Ici-Pw-1YI">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h1S-mP-jdr" style="IBUITableViewCellStyleDefault" id="DjD-BM-lMj">
-                                        <rect key="frame" x="0.0" y="1060" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1168" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DjD-BM-lMj" id="vq5-1o-ccg">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -356,7 +392,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2pc-u1-1wl">
-                                        <rect key="frame" x="0.0" y="1104" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1212" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pc-u1-1wl" id="7Os-LN-Mf1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -391,6 +427,7 @@
                         <outlet property="lowerLabel" destination="Ojw-yC-dJd" id="ccz-Fg-5Nx"/>
                         <outlet property="metalSlider" destination="nw3-P9-TiR" id="IFR-G5-mOl"/>
                         <outlet property="programaticallyContainerCell" destination="2pc-u1-1wl" id="zX8-Cx-gJo"/>
+                        <outlet property="revealedTrackSlider" destination="GV7-I4-RT7" id="n0h-Ve-Ur0"/>
                         <outlet property="setValuesSlider" destination="OdM-tn-o1x" id="wgM-R7-lm7"/>
                         <outlet property="singleThumbSlider" destination="qrN-O3-hFu" id="H7w-Gd-dX3"/>
                         <outlet property="standardSlider" destination="feo-qw-TfS" id="Ejh-Dv-iVT"/>

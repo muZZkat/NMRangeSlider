@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet NMRangeSlider *setValuesSlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *crossOverSlider;
 
+@property (strong, nonatomic) IBOutlet NMRangeSlider *verticalSlider;
+
+
 @property (weak, nonatomic) IBOutlet NMRangeSlider *labelSlider;
 @property (weak, nonatomic) IBOutlet UILabel *lowerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *upperLabel;
@@ -27,5 +30,12 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *programaticallyContainerCell;
 
 - (IBAction)labelSliderChanged:(NMRangeSlider*)sender;
+
+#pragma mark - VERTICAL SLIDER
+@property (strong, nonatomic) IBOutlet UILabel *rawLowValueLabel;
+@property (strong, nonatomic) IBOutlet UILabel *rawUpperValueLabel;
+@property (strong, nonatomic) IBOutlet UILabel *convertedLowerValueLabel;
+@property (strong, nonatomic) IBOutlet UILabel *convertedUpperValueLabel;
+- (IBAction)verticalSliderChanged:(NMRangeSlider *)sender;
 
 @end

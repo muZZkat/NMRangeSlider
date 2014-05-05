@@ -34,6 +34,8 @@ NSUInteger DeviceSystemMajorVersion() {
 @property (retain, nonatomic) UIImageView* lowerHandle;
 @property (retain, nonatomic) UIImageView* upperHandle;
 @property (retain, nonatomic) UIImageView* track;
+@property (retain, nonatomic) UIImageView* lowerTrack;
+@property (retain, nonatomic) UIImageView* upperTrack;
 @property (retain, nonatomic) UIImageView* trackBackground;
 
 @end
@@ -95,6 +97,17 @@ NSUInteger DeviceSystemMajorVersion() {
     _upperMinimumValue = NAN;
     _upperHandleHidden = NO;
     _lowerHandleHidden = NO;
+    
+    _verticalMode = NO;
+    
+    _trackWidth = NAN;
+    _trackBackgroundWidth = NAN;
+    
+    _trackEndPadding = 0.0;
+    _trackBackgroundEndPadding = 0.0;
+    
+    _handleHeight = NAN;
+    _handleWidth = NAN;
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -154,7 +167,7 @@ NSUInteger DeviceSystemMajorVersion() {
     value = MAX(value, _lowerValue+_minimumRange);
     
     _upperValue = value;
-
+    
     [self setNeedsLayout];
 }
 
@@ -231,13 +244,13 @@ NSUInteger DeviceSystemMajorVersion() {
         if(IS_PRE_IOS7())
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-trackBackground"];
-            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)];
             _trackBackgroundImage = image;
         }
         else
         {
             UIImage* image = [UIImage imageNamed:@"slider-default7-trackBackground"];
-            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)];
             _trackBackgroundImage = image;
         }
     }
@@ -252,14 +265,14 @@ NSUInteger DeviceSystemMajorVersion() {
         if(IS_PRE_IOS7())
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-track"];
-            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 7.0, 7.0, 7.0)];
             _trackImage = image;
         }
         else
         {
             
             UIImage* image = [UIImage imageNamed:@"slider-default7-track"];
-            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)];
             image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             _trackImage = image;
         }
@@ -276,13 +289,13 @@ NSUInteger DeviceSystemMajorVersion() {
         if(IS_PRE_IOS7())
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-trackCrossedOver"];
-            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(7.0, 7.0, 7.0, 7.0)];
             _trackCrossedOverImage = image;
         }
         else
         {
             UIImage* image = [UIImage imageNamed:@"slider-default7-trackCrossedOver"];
-            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
+            image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(2.0, 2.0, 2.0, 2.0)];
             _trackCrossedOverImage = image;
         }
     }
@@ -374,10 +387,11 @@ NSUInteger DeviceSystemMajorVersion() {
 
 //Returns the lower value based on the X potion
 //The return value is automatically adjust to fit inside the valid range
+// erisler@myntpartners.com - when slider is in vertical mode if uses the y axis. Name of method could porbably be updated.
 -(float) lowerValueForCenterX:(float)x
 {
-    float _padding = _lowerHandle.frame.size.width/2.0f;
-    float value = _minimumValue + (x-_padding) / (self.frame.size.width-(_padding*2)) * (_maximumValue - _minimumValue);
+    float _padding = (self.verticalMode ? _lowerHandle.frame.size.height/2.0f : _lowerHandle.frame.size.width/2.0f);
+    float value = _minimumValue + (x-_padding) / ((self.verticalMode ? self.frame.size.height : self.frame.size.width) -(_padding*2)) * (_maximumValue - _minimumValue);
     
     value = MAX(value, _minimumValue);
     value = MIN(value, _upperValue - _minimumRange);
@@ -387,11 +401,12 @@ NSUInteger DeviceSystemMajorVersion() {
 
 //Returns the upper value based on the X potion
 //The return value is automatically adjust to fit inside the valid range
+// erisler@myntpartners.com - when slider is in vertical mode if uses the y axis. Name of method could porbably be updated.
 -(float) upperValueForCenterX:(float)x
 {
-    float _padding = _upperHandle.frame.size.width/2.0;
+    float _padding = (self.verticalMode ? _upperHandle.frame.size.height/2.0 : _upperHandle.frame.size.width/2.0);
     
-    float value = _minimumValue + (x-_padding) / (self.frame.size.width-(_padding*2)) * (_maximumValue - _minimumValue);
+    float value = _minimumValue + (x-_padding) / ( (self.verticalMode ? self.frame.size.height : self.frame.size.width) -(_padding*2)) * (_maximumValue - _minimumValue);
     
     value = MIN(value, _maximumValue);
     value = MAX(value, _lowerValue+_minimumRange);
@@ -408,22 +423,161 @@ NSUInteger DeviceSystemMajorVersion() {
     
     retValue.size = CGSizeMake(currentTrackImage.size.width, currentTrackImage.size.height);
     
+    // override width heigth if there are insets.
     if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom)
     {
         retValue.size.height=self.bounds.size.height;
     }
+    if(currentTrackImage.capInsets.left || currentTrackImage.capInsets.right)
+    {
+        retValue.size.width=self.bounds.size.width/*-(self.verticalMode?0:4)*/;
+    }
     
-    float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
-    float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
+    // if there is a max width set then constrain width or height
+    // only set the width if there are insets on the image.
+    if (!isnan(_trackWidth)) {
+        if (self.verticalMode) {
+            if(currentTrackImage.capInsets.left || currentTrackImage.capInsets.right) {
+                retValue.size.width = _trackWidth;
+            }
+        } else {
+            if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom) {
+                retValue.size.height = _trackWidth;
+            }
+        }
+    }
     
-    float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
-    float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
-    
-    retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
-    retValue.size.width = xUpperValue-xLowerValue;
+    if (self.verticalMode) {
+        float lowerHandleHeight = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.height;
+        float upperHandleHeight = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.height;
+        
+        float yLowerValue = (( self.bounds.size.height - lowerHandleHeight) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleHeight/2.0f);
+        float yUpperValue = (( self.bounds.size.height - upperHandleHeight) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleHeight/2.0f);
+        
+        retValue.origin = CGPointMake((self.bounds.size.width/2.0f) - (retValue.size.width/2.0f), yLowerValue+_trackEndPadding);
+        retValue.size.height = yUpperValue-yLowerValue-_trackEndPadding;
+
+    } else {
+        float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
+        float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
+        
+        float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
+        float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
+        
+        retValue.origin = CGPointMake(xLowerValue+_trackEndPadding, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
+        retValue.size.width = xUpperValue-xLowerValue-_trackEndPadding;
+    }
 
     return retValue;
 }
+
+//returns the rect for the track image between the lower handle and the slider start
+- (CGRect)lowerTrackRect
+{
+    CGRect retValue;
+    
+    UIImage* currentTrackImage = [self lowerTrackImage];
+    
+    retValue.size = CGSizeMake(currentTrackImage.size.width, currentTrackImage.size.height);
+    
+    // override width heigth if there are insets.
+    if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom)
+    {
+        retValue.size.height=self.bounds.size.height;
+    }
+    if(currentTrackImage.capInsets.left || currentTrackImage.capInsets.right)
+    {
+        retValue.size.width=self.bounds.size.width/*-(self.verticalMode?0:4)*/;
+    }
+    
+    // if there is a max width set then constrain width or height
+    // only set the width if there are insets on the image.
+    if (!isnan(_trackWidth)) {
+        if (self.verticalMode) {
+            if(currentTrackImage.capInsets.left || currentTrackImage.capInsets.right) {
+                retValue.size.width = _trackWidth;
+            }
+        } else {
+            if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom) {
+                retValue.size.height = _trackWidth;
+            }
+        }
+    }
+    
+    // Calculate the rect
+    if (self.verticalMode) {
+        float lowerHandleHeight = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.height;
+        
+        float yLowerValue = (( self.bounds.size.height - lowerHandleHeight) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleHeight/2.0f);
+        
+        retValue.origin = CGPointMake((self.bounds.size.width/2.0f) - (retValue.size.width/2.0f), 0+_trackEndPadding);
+        retValue.size.height = yLowerValue;
+        
+    } else {
+        float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
+        
+        float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
+        
+        retValue.origin = CGPointMake(0+_trackEndPadding, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
+        retValue.size.width = xLowerValue;
+    }
+    
+    return retValue;
+}
+
+// return the track rect between the upper handle and the slider end
+- (CGRect)upperTrackRect
+{
+    CGRect retValue;
+    
+    UIImage* currentTrackImage = [self upperTrackImage];
+    
+    retValue.size = CGSizeMake(currentTrackImage.size.width, currentTrackImage.size.height);
+    
+    // override width heigth if there are insets.
+    if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom)
+    {
+        retValue.size.height=self.bounds.size.height;
+    }
+    if(currentTrackImage.capInsets.left || currentTrackImage.capInsets.right)
+    {
+        retValue.size.width=self.bounds.size.width/*-(self.verticalMode?0:4)*/;
+    }
+    
+    // if there is a max width set then constrain width or height
+    // only set the width if there are insets on the image.
+    if (!isnan(_trackWidth)) {
+        if (self.verticalMode) {
+            if(currentTrackImage.capInsets.left || currentTrackImage.capInsets.right) {
+                retValue.size.width = _trackWidth;
+            }
+        } else {
+            if(currentTrackImage.capInsets.top || currentTrackImage.capInsets.bottom) {
+                retValue.size.height = _trackWidth;
+            }
+        }
+    }
+    
+    if (self.verticalMode) {
+        float upperHandleHeight = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.height;
+        
+        float yUpperValue = (( self.bounds.size.height - upperHandleHeight) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleHeight/2.0f);
+        
+        retValue.origin = CGPointMake((self.bounds.size.width/2.0f) - (retValue.size.width/2.0f), yUpperValue);
+        retValue.size.height = self.bounds.size.height - yUpperValue - _trackEndPadding;
+        
+    } else {
+        float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
+        
+        float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
+        
+        retValue.origin = CGPointMake(xUpperValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
+        retValue.size.width = self.bounds.size.height - xUpperValue - _trackEndPadding;
+    }
+    
+    return retValue;
+}
+
 
 - (UIImage*) trackImageForCurrentValues
 {
@@ -442,19 +596,43 @@ NSUInteger DeviceSystemMajorVersion() {
 {
     CGRect trackBackgroundRect;
     
-    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width-4, _trackBackgroundImage.size.height);
+    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width, _trackBackgroundImage.size.height);
     
+    // override width heigth if there are insets.
     if(_trackBackgroundImage.capInsets.top || _trackBackgroundImage.capInsets.bottom)
     {
-        trackBackgroundRect.size.height=self.bounds.size.height;
+        trackBackgroundRect.size.height=self.bounds.size.height/*-(self.verticalMode?4:0)*/;
     }
-    
     if(_trackBackgroundImage.capInsets.left || _trackBackgroundImage.capInsets.right)
     {
-        trackBackgroundRect.size.width=self.bounds.size.width-4;
+        trackBackgroundRect.size.width=self.bounds.size.width/*-(self.verticalMode?0:4)*/;
     }
     
-    trackBackgroundRect.origin = CGPointMake(2, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    // if there is a max width set then constrain width or height base
+    if (!isnan(_trackBackgroundWidth)) {
+        if (self.verticalMode) {
+            // only set the width if there are insets on the image.
+            if(_trackBackgroundImage.capInsets.left || _trackBackgroundImage.capInsets.right) {
+                trackBackgroundRect.size.width = _trackBackgroundWidth;
+            }
+        } else {
+            // only set the width if there are insets on the image.
+            if(_trackBackgroundImage.capInsets.top || _trackBackgroundImage.capInsets.bottom) {
+                trackBackgroundRect.size.height = _trackBackgroundWidth;
+            }
+        }
+    }
+    
+    
+    if (self.verticalMode) {
+        // adjust the length to allow for user specified padding.
+        trackBackgroundRect.size.height -= (_trackBackgroundEndPadding*2);
+        trackBackgroundRect.origin = CGPointMake((self.bounds.size.width/2.0f) - (trackBackgroundRect.size.width/2.0f), 0+_trackBackgroundEndPadding);
+    } else {
+        // adjust the length to allow for user specified padding.
+        trackBackgroundRect.size.width -= (_trackBackgroundEndPadding*2);
+        trackBackgroundRect.origin = CGPointMake(0+_trackBackgroundEndPadding, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    }
     
     return trackBackgroundRect;
 }
@@ -465,15 +643,54 @@ NSUInteger DeviceSystemMajorVersion() {
     CGRect thumbRect;
     UIEdgeInsets insets = thumbImage.capInsets;
 
+    // default to the image size.
     thumbRect.size = CGSizeMake(thumbImage.size.width, thumbImage.size.height);
     
-    if(insets.top || insets.bottom)
-    {
-        thumbRect.size.height=self.bounds.size.height;
+    // if there are insets, stretch the thumb across the track.
+    if (self.verticalMode) {
+        if(insets.left || insets.right)
+        {
+            thumbRect.size.width=self.bounds.size.width;
+        }
+    } else {
+        if(insets.top || insets.bottom)
+        {
+            thumbRect.size.height=self.bounds.size.height;
+        }
     }
     
-    float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
-    thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
+    if (self.verticalMode) {
+        // set the thumb height/width?
+        if (!isnan(_handleHeight)) {
+            if (insets.top || insets.bottom) {
+                thumbRect.size.height = _handleHeight;
+            }
+        }
+        if (!isnan(_handleWidth)) {
+            if (insets.left || insets.right) {
+                thumbRect.size.width = _handleWidth;
+            }
+        }
+        
+        float yValue = ((self.bounds.size.height-thumbRect.size.height)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+        thumbRect.origin = CGPointMake((self.bounds.size.width/2.0f) - (thumbRect.size.width/2.0f) ,yValue);
+    } else {
+        // set the thumb height/width?
+        if (!isnan(_handleHeight)) {
+            // the "height" is the dimension that follows the track, so in this case it's the thumb's width.
+            if (insets.left || insets.right) {
+                thumbRect.size.width = _handleHeight;
+            }
+        }
+        if (!isnan(_handleWidth)) {
+            if (insets.top || insets.bottom) {
+                thumbRect.size.height = _handleWidth;
+            }
+        }
+        
+        float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+        thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
+    }
     
     return CGRectIntegral(thumbRect);
 
@@ -496,6 +713,14 @@ NSUInteger DeviceSystemMajorVersion() {
     // Track
     self.track = [[UIImageView alloc] initWithImage:[self trackImageForCurrentValues]];
     self.track.frame = [self trackRect];
+    if (self.lowerTrackImage) {
+        self.lowerTrack = [[UIImageView alloc] initWithImage:[self lowerTrackImage]];
+        self.lowerTrack.frame = [self lowerTrackRect];
+    }
+    if (self.upperTrackImage) {
+        self.upperTrack = [[UIImageView alloc] initWithImage:[self upperTrackImage]];
+        self.upperTrack.frame = [self upperTrackRect];
+    }
     
     //------------------------------
     // Lower Handle Handle
@@ -509,6 +734,12 @@ NSUInteger DeviceSystemMajorVersion() {
     
     [self addSubview:self.trackBackground];
     [self addSubview:self.track];
+    if (self.lowerTrack) {
+        [self addSubview:self.lowerTrack];
+    }
+    if (self.upperTrack) {
+        [self addSubview:self.upperTrack];
+    }
     [self addSubview:self.lowerHandle];
     [self addSubview:self.upperHandle];
 }
@@ -535,6 +766,15 @@ NSUInteger DeviceSystemMajorVersion() {
     self.trackBackground.frame = [self trackBackgroundRect];
     self.track.frame = [self trackRect];
     self.track.image = [self trackImageForCurrentValues];
+    
+    if (self.lowerTrack) {
+        self.lowerTrack.frame = [self lowerTrackRect];
+        self.lowerTrack.image = [self lowerTrackImage];
+    }
+    if (self.upperTrack) {
+        self.upperTrack.frame = [self upperTrackRect];
+        self.upperTrack.image = [self upperTrackImage];
+    }
 
     // Layout the lower handle
     self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
@@ -552,7 +792,11 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (CGSize)intrinsicContentSize
 {
-   return CGSizeMake(UIViewNoIntrinsicMetric, MAX(self.lowerHandleImageNormal.size.height, self.upperHandleImageNormal.size.height));
+    if (self.verticalMode) {
+        return CGSizeMake(MAX(self.lowerHandleImageNormal.size.width, self.upperHandleImageNormal.size.width), UIViewNoIntrinsicMetric);
+    } else {
+        return CGSizeMake(UIViewNoIntrinsicMetric, MAX(self.lowerHandleImageNormal.size.height, self.upperHandleImageNormal.size.height));
+    }
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -583,13 +827,21 @@ NSUInteger DeviceSystemMajorVersion() {
     if(CGRectContainsPoint([self touchRectForHandle:_lowerHandle], touchPoint))
     {
         _lowerHandle.highlighted = YES;
-        _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
+        if (self.verticalMode) {
+            _lowerTouchOffset = touchPoint.y - _lowerHandle.center.y;
+        } else {
+            _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
+        }
     }
     
     if(CGRectContainsPoint([self touchRectForHandle:_upperHandle], touchPoint))
     {
         _upperHandle.highlighted = YES;
-        _upperTouchOffset = touchPoint.x - _upperHandle.center.x;
+        if (self.verticalMode) {
+            _upperTouchOffset = touchPoint.y - _upperHandle.center.y;
+        } else {
+            _upperTouchOffset = touchPoint.x - _upperHandle.center.x;
+        }
     }
     
     _stepValueInternal= _stepValueContinuously ? _stepValue : 0.0f;
@@ -610,7 +862,12 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         //get new lower value based on the touch location.
         //This is automatically contained within a valid range.
-        float newValue = [self lowerValueForCenterX:(touchPoint.x - _lowerTouchOffset)];
+        float newValue = 0.0f;
+        if (self.verticalMode) {
+            newValue = [self lowerValueForCenterX:(touchPoint.y - _lowerTouchOffset)];
+        } else {
+            newValue = [self lowerValueForCenterX:(touchPoint.x - _lowerTouchOffset)];
+        }
         
         //if both upper and lower is selected, then the new value must be LOWER
         //otherwise the touch event is ignored.
@@ -629,7 +886,12 @@ NSUInteger DeviceSystemMajorVersion() {
     
     if(_upperHandle.highlighted )
     {
-        float newValue = [self upperValueForCenterX:(touchPoint.x - _upperTouchOffset)];
+        float newValue = 0.0f;
+        if (self.verticalMode) {
+            newValue = [self upperValueForCenterX:(touchPoint.y - _upperTouchOffset)];
+        } else {
+            newValue = [self upperValueForCenterX:(touchPoint.x - _upperTouchOffset)];
+        }
 
         //if both upper and lower is selected, then the new value must be HIGHER
         //otherwise the touch event is ignored.

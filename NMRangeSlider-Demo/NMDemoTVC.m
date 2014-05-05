@@ -33,6 +33,7 @@
     [self configureSteppedSliderAlternative];
     [self configureCrossOverSlider];
     [self configureProgramically];
+    [self configureVertical];
 }
 
 
@@ -71,6 +72,8 @@
 {
     self.standardSlider.lowerValue = 0.23;
     self.standardSlider.upperValue = 0.53;
+    self.standardSlider.trackBackgroundWidth = 8.0f;
+    self.standardSlider.trackWidth = 8.0f;
 }
 
 
@@ -142,6 +145,10 @@
     self.labelSlider.upperValue = 100;
     
     self.labelSlider.minimumRange = 10;
+    
+    self.labelSlider.trackBackgroundWidth = 10.0f;
+    self.labelSlider.trackWidth = 8.0f;
+
 }
 
 - (void) updateSliderLabels
@@ -200,12 +207,17 @@
 - (void) configureSteppedSlider
 {
     self.steppedSlider.stepValue = 0.2;
+    self.steppedSlider.trackBackgroundWidth = 20.0f;
+    self.steppedSlider.trackWidth = 10.0f;
+
 }
 
 - (void) configureSteppedSliderAlternative
 {
     self.steppedContinuouslySlider.stepValue = 0.2;
     self.steppedContinuouslySlider.stepValueContinuously = YES;
+    self.steppedContinuouslySlider.trackBackgroundWidth = 20.0f;
+    self.steppedContinuouslySlider.trackWidth = 10.0f;
     
 }
 
@@ -224,6 +236,8 @@
     
     self.crossOverSlider.upperValue = 0.23;
     self.crossOverSlider.lowerValue = 0.53;
+    self.crossOverSlider.trackBackgroundWidth = 6.0f;
+    self.crossOverSlider.trackWidth = 8.0f;
     
 }
 
@@ -238,8 +252,100 @@
     NMRangeSlider* rangeSlider = [[NMRangeSlider alloc] initWithFrame:CGRectMake(16, 6, 275, 34)];
     rangeSlider.lowerValue = 0.54;
     rangeSlider.upperValue = 0.94;
+    rangeSlider.trackWidth = 8.0f;
+    rangeSlider.trackBackgroundWidth = 10.0f;
+    
     [self.programaticallyContainerCell addSubview:rangeSlider];
+
 }
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Vertical Slider
+
+- (void) configureVerticalThemeForSlider:(NMRangeSlider*) slider
+{
+    UIImage* image = nil;
+    
+    image = [UIImage imageNamed:@"slider-vertical-trackBackground"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 10.0, 1.0, 11.0)];
+    slider.trackBackgroundImage = image;
+    
+    image = [UIImage imageNamed:@"slider-vertical-track"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 10.0, 1.0, 11.0)];
+    slider.trackImage = image;
+
+    image = [UIImage imageNamed:@"slider-vertical-trackLower"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 10.0, 1.0, 11.0)];
+    slider.lowerTrackImage = image;
+
+    image = [UIImage imageNamed:@"slider-vertical-trackUpper"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(1.0, 10.0, 1.0, 11.0)];
+    slider.upperTrackImage = image;
+
+    image = [UIImage imageNamed:@"slider-vertical-handle"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)];
+    slider.lowerHandleImageNormal = image;
+    slider.upperHandleImageNormal = image;
+    
+    image = [UIImage imageNamed:@"slider-vertical-handle-highlighted"];
+    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)];
+    slider.lowerHandleImageHighlighted = image;
+    slider.upperHandleImageHighlighted = image;
+}
+
+
+- (void) configureVertical
+{
+    [self configureVerticalThemeForSlider:self.verticalSlider];
+    
+    self.verticalSlider.lowerValue = 0.25;
+    self.verticalSlider.upperValue = 0.75;
+    self.verticalSlider.verticalMode = YES;
+    
+    // this enables crossover
+//    self.verticalSlider.minimumRange = -1.0;
+    
+    // set the track+background width
+    self.verticalSlider.trackWidth = 28.0f;
+    self.verticalSlider.trackBackgroundWidth = 30.0f;
+    
+    // set the padding at the end of the track.
+    self.verticalSlider.trackEndPadding = 5.0f;
+    self.verticalSlider.trackBackgroundEndPadding = 5.0f;
+    
+    // adjust the handle
+    self.verticalSlider.handleHeight = 15.0f;
+    self.verticalSlider.handleWidth = 32.0f;
+    
+    [self verticalSliderChanged:self.verticalSlider];
+    
+}
+
+
+- (IBAction)verticalSliderChanged:(NMRangeSlider *)sender {
+    
+    /*
+     When the slider is in vertical mode it is technically rendered upsidedown (top-left is 0,0). This means the top most handle
+     represents the "lower" value and sliding it up moves the value toward 0. The opposite is true for the other handle. To compensate
+     just convert the raw value like below. We will likely fix this later
+     */
+    
+    // raw values
+    self.rawLowValueLabel.text = [NSString stringWithFormat:@"lower: %f", sender.lowerValue];
+    self.rawUpperValueLabel.text = [NSString stringWithFormat:@"upper: %f", sender.upperValue];
+    
+    // convert values - reverse and subtract form the max
+    self.convertedLowerValueLabel.text = [NSString stringWithFormat:@"lower: %f", sender.maximumValue-sender.upperValue];
+    self.convertedUpperValueLabel.text = [NSString stringWithFormat:@"upper: %f", sender.maximumValue-sender.lowerValue];
+    
+    [self.rawLowValueLabel sizeToFit];
+    [self.rawUpperValueLabel sizeToFit];
+    [self.convertedLowerValueLabel sizeToFit];
+    [self.convertedUpperValueLabel sizeToFit];
+}
+
 
 // ------------------------------------------------------------------------------------------------------
 

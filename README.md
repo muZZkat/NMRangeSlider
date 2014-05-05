@@ -1,24 +1,39 @@
 
-# NMRangeSlider (erisler additions)
+# NMRangeSlider
 
 * * * * * * * * * * *
 
-* Added "vertical mode" to slider to render and operate vertically. NOTE: because 0,0 is the upper left in iOS, the control is rendered upside down to the way you would expect it to function. This means that the handle at the top actually represents the "lower" value and if you slide it up, the lower value will decrease toward 0 (the opposite being true for the "upper" handle). For now (until myself or someone else changes the code) you will have to convert the upper and lower values after reading them. I've included this code in the example to illustrate.
+NMRangeSlider is custom iOS control that gives you a UISlider like UI for selecting a range of values. This project was inspried by: https://github.com/buildmobile/iosrangeslider.
 
-* Added track and track background width property so you can explicitly set both. These values will only take effect if the track and background images have insets on them.
+The range slider can be configured using a set of images in much the same way as UISlider. (Background, Track and Thumbs)
 
-* Added track and track background padding property so you can inset the track from the end of the control's bounds.
+In addition to the regular UISlider features it can:
 
-* Updated default theme images and added new vertical theme
+* Handle stepped values. The handles will snap to points along the slider with a couple different options
+* Access to the centre location of handle image. This can be used to arrange subviews.
+* (New) Disable lower handle so it behaves like a regular UISlider but still use other features.
+* (New) Set a negative min range so the thumbs can cross over. (with custom track image)
+* (New) Automatic iOS 7 theme with tint color support
 
-* Added lower and upper track image properties. These currently only apply if you enable the double slider (lowerHandleHidden==NO && upperHandleHidden==NO). Note - at this time the "upper" track in vertical mode is in fact the bottom track. This is because (0,0) is at the top. 
+See the demo application for some examples on how the to configure the slider.
 
-* Updated demo project showing new features.
+# ![Screenshot](https://raw.github.com/muZZkat/NMRangeSlider/master/NMRangeSlider-ScreenShot.png)
 
-* Added thumb width+height properties. If you set insets for the thumb images you can resize them using these properties.
+## TODO
+
+If anyone would like to help here a few things I would like to add:
+
+* Custom images for other control states. UISlider lets the user set different images for any number of UIControlStates.
+* Have a designer provide a few more sample graphics.
+* Ability to set a tint colour that is applied to the default images (or drawn using CoreGraphics)
 
 
+## Authors
 
+* Murray Hughes ([@muzzkat](https://twitter.com/muzzkat))
 
+## License
 
+Copyright 2012 Null Monkey Pty Ltd
 
+Licensed under the MIT License, enjoy!

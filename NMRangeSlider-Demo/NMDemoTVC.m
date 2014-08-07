@@ -92,10 +92,12 @@
     slider.trackImage = image;
     
     image = [UIImage imageNamed:@"slider-metal-handle"];
+    image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 2, 1, 2)];
     slider.lowerHandleImageNormal = image;
     slider.upperHandleImageNormal = image;
     
     image = [UIImage imageNamed:@"slider-metal-handle-highlighted"];
+    image = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 2, 1, 2)];
     slider.lowerHandleImageHighlighted = image;
     slider.upperHandleImageHighlighted = image;
 }

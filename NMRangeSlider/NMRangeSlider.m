@@ -98,6 +98,10 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _lowerHandleHiddenWidth = 2.0f;
     _upperHandleHiddenWidth = 2.0f;
+    
+    _lowerTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
+    _upperTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
+    
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -593,18 +597,6 @@ NSUInteger DeviceSystemMajorVersion() {
 #pragma mark -
 #pragma mark - Touch handling
 
-// The handle size can be a little small, so i make it a little bigger
-// TODO: Do it the correct way. I think wwdc 2012 had a video on it...
-- (CGRect) touchRectForHandle:(UIImageView*) handleImageView
-{
-    float xPadding = 5;
-    float yPadding = 5; //(self.bounds.size.height-touchRect.size.height)/2.0f
-
-    // expands rect by xPadding in both x-directions, and by yPadding in both y-directions
-    CGRect touchRect = CGRectInset(handleImageView.frame, -xPadding, -yPadding);;
-    return touchRect;
-}
-
 -(BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint touchPoint = [touch locationInView:self];
@@ -613,13 +605,13 @@ NSUInteger DeviceSystemMajorVersion() {
     //Check both buttons upper and lower thumb handles because
     //they could be on top of each other.
     
-    if(CGRectContainsPoint([self touchRectForHandle:_lowerHandle], touchPoint))
+    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_lowerHandle.frame, self.lowerTouchEdgeInsets), touchPoint))
     {
         _lowerHandle.highlighted = YES;
         _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
     }
     
-    if(CGRectContainsPoint([self touchRectForHandle:_upperHandle], touchPoint))
+    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_upperHandle.frame, self.upperTouchEdgeInsets), touchPoint))
     {
         _upperHandle.highlighted = YES;
         _upperTouchOffset = touchPoint.x - _upperHandle.center.x;

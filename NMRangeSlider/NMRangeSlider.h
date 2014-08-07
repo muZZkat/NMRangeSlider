@@ -49,6 +49,8 @@
 // minimum value for right thumb
 @property(assign, nonatomic) float upperMinimumValue;
 
+@property (assign, nonatomic) UIEdgeInsets lowerTouchEdgeInsets;
+@property (assign, nonatomic) UIEdgeInsets upperTouchEdgeInsets;
 
 @property (assign, nonatomic) BOOL lowerHandleHidden;
 @property (assign, nonatomic) BOOL upperHandleHidden;

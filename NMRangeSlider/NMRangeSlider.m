@@ -88,13 +88,16 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _continuous = YES;
     
-    _lowerValue = 0.0;
-    _upperValue = 1.0;
+    _lowerValue = _minimumValue;
+    _upperValue = _maximumValue;
     
     _lowerMaximumValue = NAN;
     _upperMinimumValue = NAN;
     _upperHandleHidden = NO;
     _lowerHandleHidden = NO;
+    
+    _lowerHandleHiddenWidth = 2.0f;
+    _upperHandleHiddenWidth = 2.0f;
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -433,8 +436,8 @@ NSUInteger DeviceSystemMajorVersion() {
         retValue.size.height=self.bounds.size.height;
     }
     
-    float lowerHandleWidth = _lowerHandleHidden ? 2.0f : _lowerHandle.frame.size.width;
-    float upperHandleWidth = _upperHandleHidden ? 2.0f : _upperHandle.frame.size.width;
+    float lowerHandleWidth = _lowerHandleHidden ? _lowerHandleHiddenWidth : _lowerHandle.frame.size.width;
+    float upperHandleWidth = _upperHandleHidden ? _upperHandleHiddenWidth : _upperHandle.frame.size.width;
     
     float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
     float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);

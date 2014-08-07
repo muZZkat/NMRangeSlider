@@ -297,12 +297,12 @@ NSUInteger DeviceSystemMajorVersion() {
         if(IS_PRE_IOS7())
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
-            _lowerHandleImageNormal = image;
+            _lowerHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
         }
         else
         {
             UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
-            _lowerHandleImageNormal = image;
+            _lowerHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
 
     }
@@ -318,11 +318,13 @@ NSUInteger DeviceSystemMajorVersion() {
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
             _lowerHandleImageHighlighted = image;
+            _lowerHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
+
         }
         else
         {
             UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
-            _lowerHandleImageNormal = image;
+            _lowerHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
     
@@ -336,12 +338,13 @@ NSUInteger DeviceSystemMajorVersion() {
         if(IS_PRE_IOS7())
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
-            _upperHandleImageNormal = image;
+            _upperHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
+
         }
         else
         {
             UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
-            _upperHandleImageNormal = image;
+            _upperHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
     
@@ -355,12 +358,12 @@ NSUInteger DeviceSystemMajorVersion() {
         if(IS_PRE_IOS7())
         {
             UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
-            _upperHandleImageHighlighted = image;
+            _upperHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
         }
         else
         {
             UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
-            _upperHandleImageNormal = image;
+            _upperHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
     
@@ -399,6 +402,23 @@ NSUInteger DeviceSystemMajorVersion() {
     return value;
 }
 
+- (UIEdgeInsets) trackAlignmentInsets
+{
+    UIEdgeInsets lowerAlignmentInsets = self.lowerHandleImageNormal.alignmentRectInsets;
+    UIEdgeInsets upperAlignmentInsets = self.upperHandleImageNormal.alignmentRectInsets;
+    
+    CGFloat lowerOffset = MAX(lowerAlignmentInsets.right, upperAlignmentInsets.left);
+    CGFloat upperOffset = MAX(upperAlignmentInsets.right, lowerAlignmentInsets.left);
+    
+    CGFloat leftOffset = MAX(lowerOffset, upperOffset);
+    CGFloat rightOffset = leftOffset;
+    CGFloat topOffset = lowerAlignmentInsets.top;
+    CGFloat bottomOffset = lowerAlignmentInsets.bottom;
+    
+    return UIEdgeInsetsMake(topOffset, leftOffset, bottomOffset, rightOffset);
+}
+
+
 //returns the rect for the track image between the lower and upper values based on the trackimage object
 - (CGRect)trackRect
 {
@@ -422,6 +442,9 @@ NSUInteger DeviceSystemMajorVersion() {
     retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
     retValue.size.width = xUpperValue-xLowerValue;
 
+    UIEdgeInsets alignmentInsets = [self trackAlignmentInsets];
+    retValue = UIEdgeInsetsInsetRect(retValue,alignmentInsets);
+    
     return retValue;
 }
 
@@ -442,7 +465,7 @@ NSUInteger DeviceSystemMajorVersion() {
 {
     CGRect trackBackgroundRect;
     
-    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width-4, _trackBackgroundImage.size.height);
+    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width, _trackBackgroundImage.size.height);
     
     if(_trackBackgroundImage.capInsets.top || _trackBackgroundImage.capInsets.bottom)
     {
@@ -451,10 +474,15 @@ NSUInteger DeviceSystemMajorVersion() {
     
     if(_trackBackgroundImage.capInsets.left || _trackBackgroundImage.capInsets.right)
     {
-        trackBackgroundRect.size.width=self.bounds.size.width-4;
+        trackBackgroundRect.size.width=self.bounds.size.width;
     }
     
-    trackBackgroundRect.origin = CGPointMake(2, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    trackBackgroundRect.origin = CGPointMake(0, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    
+    // Adjust the track rect based on the image alignment rects
+    
+    UIEdgeInsets alignmentInsets = [self trackAlignmentInsets];
+    trackBackgroundRect = UIEdgeInsetsInsetRect(trackBackgroundRect,alignmentInsets);
     
     return trackBackgroundRect;
 }
@@ -487,10 +515,6 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (void) addSubviews
 {
-    //------------------------------
-    // Track Brackground
-    self.trackBackground = [[UIImageView alloc] initWithImage:self.trackBackgroundImage];
-    self.trackBackground.frame = [self trackBackgroundRect];
     
     //------------------------------
     // Track
@@ -506,6 +530,12 @@ NSUInteger DeviceSystemMajorVersion() {
     // Upper Handle Handle
     self.upperHandle = [[UIImageView alloc] initWithImage:self.upperHandleImageNormal highlightedImage:self.upperHandleImageHighlighted];
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
+    
+    //------------------------------
+    // Track Brackground
+    self.trackBackground = [[UIImageView alloc] initWithImage:self.trackBackgroundImage];
+    self.trackBackground.frame = [self trackBackgroundRect];
+    
     
     [self addSubview:self.trackBackground];
     [self addSubview:self.track];

@@ -445,7 +445,7 @@ NSUInteger DeviceSystemMajorVersion() {
 {
     CGRect trackBackgroundRect;
     
-    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width-4, _trackBackgroundImage.size.height);
+    trackBackgroundRect.size = CGSizeMake(_trackBackgroundImage.size.width-20, _trackBackgroundImage.size.height);
     
     if(_trackBackgroundImage.capInsets.top || _trackBackgroundImage.capInsets.bottom)
     {
@@ -454,10 +454,10 @@ NSUInteger DeviceSystemMajorVersion() {
     
     if(_trackBackgroundImage.capInsets.left || _trackBackgroundImage.capInsets.right)
     {
-        trackBackgroundRect.size.width=self.bounds.size.width-4;
+        trackBackgroundRect.size.width=self.bounds.size.width-20;
     }
     
-    trackBackgroundRect.origin = CGPointMake(2, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    trackBackgroundRect.origin = CGPointMake(10, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
     
     return trackBackgroundRect;
 }

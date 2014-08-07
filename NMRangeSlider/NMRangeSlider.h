@@ -53,6 +53,9 @@
 @property (assign, nonatomic) BOOL lowerHandleHidden;
 @property (assign, nonatomic) BOOL upperHandleHidden;
 
+@property (assign, nonatomic) float lowerHandleHiddenWidth;
+@property (assign, nonatomic) float upperHandleHiddenWidth;
+
 // Images, these should be set before the control is displayed.
 // If they are not set, then the default images are used.
 // eg viewDidLoad

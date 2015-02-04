@@ -618,7 +618,10 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     _stepValueInternal= _stepValueContinuously ? _stepValue : 0.0f;
-    
+	
+	
+	[self sendActionsForControlEvents:UIControlEventEditingDidBegin];
+	
     return YES;
 }
 
@@ -697,8 +700,9 @@ NSUInteger DeviceSystemMajorVersion() {
         [self setLowerValue:_lowerValue animated:YES];
         [self setUpperValue:_upperValue animated:YES];
     }
-    
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+	
+	[self sendActionsForControlEvents:UIControlEventValueChanged];
+	[self sendActionsForControlEvents:UIControlEventEditingDidEnd];
 }
 
 @end

@@ -442,10 +442,16 @@ NSUInteger DeviceSystemMajorVersion() {
     
     float lowerHandleWidth = _lowerHandleHidden ? _lowerHandleHiddenWidth : _lowerHandle.frame.size.width;
     float upperHandleWidth = _upperHandleHidden ? _upperHandleHiddenWidth : _upperHandle.frame.size.width;
-    
-    float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
-    float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
-    
+	
+	float xLowerValue = lowerHandleWidth/2.0f;
+	float xUpperValue = self.bounds.size.width - upperHandleWidth/2.0f;
+	
+	if (_maximumValue != _minimumValue)
+	{
+		xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
+		xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
+	}
+		
     retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
     retValue.size.width = xUpperValue-xLowerValue;
 
@@ -495,7 +501,7 @@ NSUInteger DeviceSystemMajorVersion() {
 }
 
 //returms the rect of the tumb image for a given track rect and value
-- (CGRect)thumbRectForValue:(float)value image:(UIImage*) thumbImage
+- (CGRect)thumbRectForValue:(float)value image:(UIImage*) thumbImage isLowerValue:(BOOL)isLowerValue
 {
     CGRect thumbRect;
     UIEdgeInsets insets = thumbImage.capInsets;
@@ -506,8 +512,13 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         thumbRect.size.height=self.bounds.size.height;
     }
-    
-    float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+	
+	float xValue = isLowerValue ? 0 : self.bounds.size.width - thumbRect.size.width;
+	if (_maximumValue != _minimumValue)
+	{
+		xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+	}
+	
     thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
     
     return CGRectIntegral(thumbRect);
@@ -531,12 +542,12 @@ NSUInteger DeviceSystemMajorVersion() {
     //------------------------------
     // Lower Handle Handle
     self.lowerHandle = [[UIImageView alloc] initWithImage:self.lowerHandleImageNormal highlightedImage:self.lowerHandleImageHighlighted];
-    self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
+    self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal isLowerValue:YES];
     
     //------------------------------
     // Upper Handle Handle
     self.upperHandle = [[UIImageView alloc] initWithImage:self.upperHandleImageNormal highlightedImage:self.upperHandleImageHighlighted];
-    self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
+    self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal isLowerValue:NO];
     
     //------------------------------
     // Track Brackground
@@ -574,13 +585,13 @@ NSUInteger DeviceSystemMajorVersion() {
     self.track.image = [self trackImageForCurrentValues];
 
     // Layout the lower handle
-    self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal];
+    self.lowerHandle.frame = [self thumbRectForValue:_lowerValue image:self.lowerHandleImageNormal isLowerValue:YES];
     self.lowerHandle.image = self.lowerHandleImageNormal;
     self.lowerHandle.highlightedImage = self.lowerHandleImageHighlighted;
     self.lowerHandle.hidden = self.lowerHandleHidden;
     
     // Layoput the upper handle
-    self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
+    self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal isLowerValue:NO];
     self.upperHandle.image = self.upperHandleImageNormal;
     self.upperHandle.highlightedImage = self.upperHandleImageHighlighted;
     self.upperHandle.hidden= self.upperHandleHidden;

@@ -28,13 +28,14 @@ NSUInteger DeviceSystemMajorVersion() {
     float _lowerTouchOffset;
     float _upperTouchOffset;
     float _stepValueInternal;
-    BOOL _haveAddedSubviews;
 }
 
 @property (retain, nonatomic) UIImageView* lowerHandle;
 @property (retain, nonatomic) UIImageView* upperHandle;
 @property (retain, nonatomic) UIImageView* track;
 @property (retain, nonatomic) UIImageView* trackBackground;
+@property (assign, nonatomic) CGPoint lowerCenter;
+@property (assign, nonatomic) CGPoint upperCenter;
 
 @end
 
@@ -44,14 +45,6 @@ NSUInteger DeviceSystemMajorVersion() {
 #pragma mark -
 #pragma mark - Constructors
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        [self configureView];
-    }
-    return self;
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -79,6 +72,7 @@ NSUInteger DeviceSystemMajorVersion() {
 
 - (void) configureView
 {
+
     //Setup the default values
     _minimumValue = 0.0;
     _maximumValue = 1.0;
@@ -101,23 +95,32 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _lowerTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
     _upperTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
-    
+
+    [self addSubviews];
+
+    [self.lowerHandle addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    [self.upperHandle addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)dealloc {
+    [self.lowerHandle removeObserver:self forKeyPath:@"frame"];
+    [self.upperHandle removeObserver:self forKeyPath:@"frame"];
+}
+
+- (void) observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context {
+    if ([keyPath isEqual:@"frame"]) {
+        if (object == self.lowerHandle) {
+            self.lowerCenter = self.lowerHandle.center;
+        } else if (object == self.upperHandle) {
+            self.upperCenter = self.upperHandle.center;
+        }
+    }
 }
 
 // ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
 #pragma mark - Properties
-
-- (CGPoint) lowerCenter
-{
-    return _lowerHandle.center;
-}
-
-- (CGPoint) upperCenter
-{
-    return _upperHandle.center;
-}
 
 - (void) setLowerValue:(float)lowerValue
 {
@@ -553,12 +556,6 @@ NSUInteger DeviceSystemMajorVersion() {
 
 -(void)layoutSubviews
 {
-    if(_haveAddedSubviews==NO)
-    {
-        _haveAddedSubviews=YES;
-        [self addSubviews];
-    }
-    
     if(_lowerHandleHidden)
     {
         _lowerValue = _minimumValue;

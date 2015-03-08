@@ -234,19 +234,26 @@ NSUInteger DeviceSystemMajorVersion() {
 
 //ON-Demand images. If the images are not set, then the default values are loaded.
 
+- (UIImage *)imageFromBundle:(NSString*)imageName {
+    NSBundle* bundle = [NSBundle bundleForClass:[NMRangeSlider class]];
+    NSString *imagePath = [bundle pathForResource:imageName ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    return image;
+}
+
 - (UIImage *)trackBackgroundImage
 {
     if(_trackBackgroundImage==nil)
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-trackBackground"];
+            UIImage* image = [self imageFromBundle:@"slider-default-trackBackground"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 5.0, 0.0, 5.0)];
             _trackBackgroundImage = image;
         }
         else
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default7-trackBackground"];
+            UIImage *image = [self imageFromBundle:@"slider-default7-trackBackground"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
             _trackBackgroundImage = image;
         }
@@ -261,14 +268,14 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-track"];
+            UIImage* image = [self imageFromBundle:@"slider-default-track"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
             _trackImage = image;
         }
         else
         {
             
-            UIImage* image = [UIImage imageNamed:@"slider-default7-track"];
+            UIImage* image = [self imageFromBundle:@"slider-default7-track"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
             image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             _trackImage = image;
@@ -285,13 +292,13 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-trackCrossedOver"];
+            UIImage* image = [self imageFromBundle:@"slider-default-trackCrossedOver"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 7.0, 0.0, 7.0)];
             _trackCrossedOverImage = image;
         }
         else
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default7-trackCrossedOver"];
+            UIImage *image = [self imageFromBundle:@"slider-default7-trackCrossedOver"];
             image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.0, 2.0, 0.0, 2.0)];
             _trackCrossedOverImage = image;
         }
@@ -306,12 +313,12 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
+            UIImage* image = [self imageFromBundle:@"slider-default-handle"];
             _lowerHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
         }
         else
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
             _lowerHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
 
@@ -326,14 +333,14 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
+            UIImage* image = [self imageFromBundle:@"slider-default-handle-highlighted"];
             _lowerHandleImageHighlighted = image;
             _lowerHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
-
+            
         }
         else
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
             _lowerHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
@@ -347,13 +354,13 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-handle"];
+            UIImage* image = [self imageFromBundle:@"slider-default-handle"];
             _upperHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
-
+            
         }
         else
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
             _upperHandleImageNormal = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }
@@ -367,12 +374,12 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         if(IS_PRE_IOS7())
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default-handle-highlighted"];
+            UIImage* image = [self imageFromBundle:@"slider-default-handle-highlighted"];
             _upperHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
         }
         else
         {
-            UIImage* image = [UIImage imageNamed:@"slider-default7-handle"];
+            UIImage *image = [self imageFromBundle:@"slider-default7-handle"];
             _upperHandleImageHighlighted = [image imageWithAlignmentRectInsets:UIEdgeInsetsMake(-1, 8, 1, 8)];
         }
     }

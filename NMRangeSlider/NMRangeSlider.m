@@ -561,6 +561,7 @@ NSUInteger DeviceSystemMajorVersion() {
 
 -(void)layoutSubviews
 {
+    [super layoutSubviews];
     if(_lowerHandleHidden)
     {
         _lowerValue = _minimumValue;

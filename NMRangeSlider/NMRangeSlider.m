@@ -30,8 +30,6 @@ NSUInteger DeviceSystemMajorVersion() {
     float _stepValueInternal;
 }
 
-@property (retain, nonatomic) UIImageView* lowerHandle;
-@property (retain, nonatomic) UIImageView* upperHandle;
 @property (retain, nonatomic) UIImageView* track;
 @property (retain, nonatomic) UIImageView* trackBackground;
 @property (assign, nonatomic) CGPoint lowerCenter;

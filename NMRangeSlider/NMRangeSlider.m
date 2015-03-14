@@ -186,6 +186,13 @@ NSUInteger DeviceSystemMajorVersion() {
             [self setUpperValue:upperValue];
         }
         
+        // TMP HACK (HKS): Do again in case the lack of upper value + minRange messed it up
+        if(!isnan(lowerValue))
+        {
+            [self setLowerValue:lowerValue];
+        }
+
+        
     };
     
     if(animated)

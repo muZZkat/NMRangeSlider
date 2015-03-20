@@ -10,7 +10,8 @@
 #import "NMDemoTVC.h"
 
 @interface NMDemoTVC ()
-
+- (void)configurePanGesture;
+- (void)panGestureTriggered:(UIGestureRecognizer *)gesture;
 @end
 
 @implementation NMDemoTVC
@@ -24,6 +25,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self configurePanGesture];
+    
     [self configureStandardSlider];
     [self configureMetalSlider];
     [self configureSingleThumbSlider];
@@ -61,6 +65,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)configurePanGesture {
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureTriggered:)];
+    
+    [self.view addGestureRecognizer:panGesture];
+}
+
 // ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
@@ -73,6 +83,9 @@
     self.standardSlider.upperValue = 0.53;
 }
 
+- (void)panGestureTriggered:(UIGestureRecognizer *)gesture {
+    NSLog(@"PanGestireTriggered");
+}
 
 // ------------------------------------------------------------------------------------------------------
 

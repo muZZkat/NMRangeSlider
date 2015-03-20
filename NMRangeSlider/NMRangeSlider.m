@@ -704,4 +704,9 @@ NSUInteger DeviceSystemMajorVersion() {
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
+// Prevent any gesture recognizer to start traking touch events and cancel the touch in NMRangeSlider.
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return NO;
+}
+
 @end

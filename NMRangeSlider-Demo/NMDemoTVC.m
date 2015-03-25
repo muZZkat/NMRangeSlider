@@ -201,6 +201,9 @@
 
 - (void) configureSteppedSlider
 {
+    //Setting a custom color to the slider track
+    self.steppedSlider.trackImage=[MMColorForTrack getTrackImageWithColorR:200 G:200 B:0 A:1];
+
     self.steppedSlider.stepValue = 0.2;
 }
 
@@ -222,6 +225,7 @@
 {
     // you can set a negative minimum range so the lower and upper values can actually
     // cross over. When they cross over, the track changes color. Custom images can be set.
+   
     self.crossOverSlider.minimumRange = -1.0;
     
     self.crossOverSlider.upperValue = 0.23;

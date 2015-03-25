@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NMRangeSlider.h"
+#import "MMColorForTrack.h"
 
 @interface NMDemoTVC : UITableViewController
 

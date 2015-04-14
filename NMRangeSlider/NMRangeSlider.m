@@ -12,8 +12,6 @@
 #define IS_PRE_IOS7() (DeviceSystemMajorVersion() < 7)
 
 
-#define kAccessoryOffset 40.0f
-
 NSUInteger DeviceSystemMajorVersion() {
     static NSUInteger _deviceSystemMajorVersion = -1;
     static dispatch_once_t onceToken;
@@ -586,7 +584,7 @@ NSUInteger DeviceSystemMajorVersion() {
     self.lowerHandle.hidden = self.lowerHandleHidden;
     
     self.lowerHandleAccessory.center =  CGPointMake(self.lowerCenter.x ,
-                                                    self.lowerCenter.y - kAccessoryOffset);
+                                                    self.lowerCenter.y - self.accessoryOffset);
 
     
     // Layoput the upper handle
@@ -596,7 +594,7 @@ NSUInteger DeviceSystemMajorVersion() {
     self.upperHandle.hidden= self.upperHandleHidden;
     
     self.upperHandleAccessory.center = CGPointMake(self.upperCenter.x ,
-                                                  self.upperCenter.y + kAccessoryOffset);
+                                                  self.upperCenter.y + self.accessoryOffset);
 
 }
 
@@ -683,7 +681,7 @@ NSUInteger DeviceSystemMajorVersion() {
             [self bringSubviewToFront:_lowerHandle];
             
             self.lowerHandleAccessory.center = CGPointMake(self.lowerCenter.x,
-                                              self.lowerCenter.y - kAccessoryOffset);
+                                              self.lowerCenter.y - self.accessoryOffset);
 
             
             [self setLowerValue:newValue animated:_stepValueContinuously ? YES : NO];
@@ -706,7 +704,7 @@ NSUInteger DeviceSystemMajorVersion() {
             [self bringSubviewToFront:_upperHandle];
 
             self.upperHandleAccessory.center = CGPointMake(self.upperCenter.x ,
-                                                           self.upperCenter.y + kAccessoryOffset);
+                                                           self.upperCenter.y + self.accessoryOffset);
 
             [self setUpperValue:newValue animated:_stepValueContinuously ? YES : NO];
         }

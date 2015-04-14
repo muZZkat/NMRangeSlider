@@ -65,6 +65,8 @@
 
 //Probably should add support for all control states... Anyone?
 
+@property (assign, nonatomic) CGFloat accessoryOffset;
+
 @property(retain, nonatomic) UIImage* lowerHandleImageNormal;
 @property(retain, nonatomic) UIImage* lowerHandleImageHighlighted;
 @property(retain, nonatomic) UIView* lowerHandleAccessory;

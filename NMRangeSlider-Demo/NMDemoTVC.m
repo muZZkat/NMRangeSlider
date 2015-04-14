@@ -86,6 +86,8 @@
     self.standardSliderWithAccessory.lowerValue = 0.23;
     self.standardSliderWithAccessory.upperValue = 0.53;
     
+    self.standardSliderWithAccessory.accessoryOffset = 40.0f;
+    
     UILabel *lowerAccessory = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 30.0f)];
     lowerAccessory.textAlignment = NSTextAlignmentCenter;
     lowerAccessory.text = @"lower";

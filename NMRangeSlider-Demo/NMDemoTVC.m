@@ -21,6 +21,10 @@
 #pragma mark -
 #pragma mark - View LifeCycle
 
+- (void)scrollViewDidScroll: (UIScrollView*)scroll { // only use this if you are using a Point Feedback slider
+    [self updateSliderLabels];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

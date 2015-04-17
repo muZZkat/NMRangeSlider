@@ -25,6 +25,7 @@
 {
     [super viewDidLoad];
     [self configureStandardSlider];
+    [self configureStandardSliderwithAccessory];
     [self configureMetalSlider];
     [self configureSingleThumbSlider];
     [self configureLabelSlider];
@@ -71,6 +72,31 @@
 {
     self.standardSlider.lowerValue = 0.23;
     self.standardSlider.upperValue = 0.53;
+}
+
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Standard Slider with accessory view
+
+
+- (void) configureStandardSliderwithAccessory
+{
+    self.standardSliderWithAccessory.lowerValue = 0.23;
+    self.standardSliderWithAccessory.upperValue = 0.53;
+    
+    self.standardSliderWithAccessory.accessoryOffset = 40.0f;
+    
+    UILabel *lowerAccessory = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 30.0f)];
+    lowerAccessory.textAlignment = NSTextAlignmentCenter;
+    lowerAccessory.text = @"lower";
+    self.standardSliderWithAccessory.lowerHandleAccessory = lowerAccessory;
+
+    UILabel *upperAccessory = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 30.0f)];
+    upperAccessory.textAlignment = NSTextAlignmentCenter;
+    upperAccessory.text = @"upper";
+    self.standardSliderWithAccessory.upperHandleAccessory = upperAccessory;
 }
 
 

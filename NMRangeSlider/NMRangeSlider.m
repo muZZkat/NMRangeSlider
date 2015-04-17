@@ -11,6 +11,7 @@
 
 #define IS_PRE_IOS7() (DeviceSystemMajorVersion() < 7)
 
+
 NSUInteger DeviceSystemMajorVersion() {
     static NSUInteger _deviceSystemMajorVersion = -1;
     static dispatch_once_t onceToken;
@@ -582,17 +583,47 @@ NSUInteger DeviceSystemMajorVersion() {
     self.lowerHandle.highlightedImage = self.lowerHandleImageHighlighted;
     self.lowerHandle.hidden = self.lowerHandleHidden;
     
+    self.lowerHandleAccessory.center =  CGPointMake(self.lowerCenter.x ,
+                                                    self.lowerCenter.y - self.accessoryOffset);
+
+    
     // Layoput the upper handle
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
     self.upperHandle.image = self.upperHandleImageNormal;
     self.upperHandle.highlightedImage = self.upperHandleImageHighlighted;
     self.upperHandle.hidden= self.upperHandleHidden;
     
+    self.upperHandleAccessory.center = CGPointMake(self.upperCenter.x ,
+                                                  self.upperCenter.y + self.accessoryOffset);
+
 }
 
 - (CGSize)intrinsicContentSize
 {
    return CGSizeMake(UIViewNoIntrinsicMetric, MAX(self.lowerHandleImageNormal.size.height, self.upperHandleImageNormal.size.height));
+}
+
+
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Accessory views
+
+- (void)setLowerHandleAccessory:(UIView *)lowerHandleAccessory {
+
+    [_lowerHandleAccessory removeFromSuperview];
+    _lowerHandleAccessory = lowerHandleAccessory;
+    
+    [self addSubview:_lowerHandleAccessory];
+}
+
+- (void)setUpperHandleAccessory:(UIView *)upperHandleAccessory {
+
+    [_upperHandleAccessory removeFromSuperview];
+    _upperHandleAccessory = upperHandleAccessory;
+    
+    [self addSubview:_upperHandleAccessory];
+
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -608,13 +639,15 @@ NSUInteger DeviceSystemMajorVersion() {
     //Check both buttons upper and lower thumb handles because
     //they could be on top of each other.
     
-    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_lowerHandle.frame, self.lowerTouchEdgeInsets), touchPoint))
+    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_lowerHandle.frame, self.lowerTouchEdgeInsets), touchPoint) ||
+       (self.lowerHandleAccessory && CGRectContainsPoint(UIEdgeInsetsInsetRect(self.lowerHandleAccessory.frame, self.lowerTouchEdgeInsets), touchPoint) ))
     {
         _lowerHandle.highlighted = YES;
         _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
     }
     
-    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_upperHandle.frame, self.upperTouchEdgeInsets), touchPoint))
+    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_upperHandle.frame, self.upperTouchEdgeInsets), touchPoint) ||
+       (self.upperHandleAccessory && CGRectContainsPoint(UIEdgeInsetsInsetRect(self.upperHandleAccessory.frame, self.lowerTouchEdgeInsets), touchPoint) ))
     {
         _upperHandle.highlighted = YES;
         _upperTouchOffset = touchPoint.x - _upperHandle.center.x;
@@ -647,6 +680,10 @@ NSUInteger DeviceSystemMajorVersion() {
             _upperHandle.highlighted=NO;
             [self bringSubviewToFront:_lowerHandle];
             
+            self.lowerHandleAccessory.center = CGPointMake(self.lowerCenter.x,
+                                              self.lowerCenter.y - self.accessoryOffset);
+
+            
             [self setLowerValue:newValue animated:_stepValueContinuously ? YES : NO];
         }
         else
@@ -665,6 +702,10 @@ NSUInteger DeviceSystemMajorVersion() {
         {
             _lowerHandle.highlighted=NO;
             [self bringSubviewToFront:_upperHandle];
+
+            self.upperHandleAccessory.center = CGPointMake(self.upperCenter.x ,
+                                                           self.upperCenter.y + self.accessoryOffset);
+
             [self setUpperValue:newValue animated:_stepValueContinuously ? YES : NO];
         }
         else

@@ -445,7 +445,15 @@ NSUInteger DeviceSystemMajorVersion() {
     
     float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
     float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
-    
+
+    if (isnan(xLowerValue)) {
+        xLowerValue = 0.0f;
+    }
+
+    if (isnan(xUpperValue)) {
+        xUpperValue = 0.0f;
+    }
+
     retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
     retValue.size.width = xUpperValue-xLowerValue;
 
@@ -508,8 +516,13 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+
+    if (isnan(xValue)) {
+        xValue = 0.0f;
+    }
+
     thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
-    
+
     return CGRectIntegral(thumbRect);
 
 }

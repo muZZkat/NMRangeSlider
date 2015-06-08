@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Prolific-NMRangeSlider'
-  s.version  = '0.1.0'
+  s.version  = '0.1.1'
   s.license  = 'MIT'
   s.summary  = 'A custom range slider. Forked from https://github.com/muZZkat/NMRangeSlider'
   s.homepage = 'https://bitbucket.org/prolificinteractive/nmrangeslider'

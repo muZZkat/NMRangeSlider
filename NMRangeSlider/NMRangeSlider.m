@@ -622,6 +622,10 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _stepValueInternal= _stepValueContinuously ? _stepValue : 0.0f;
     
+    if ([_delegate respondsToSelector:@selector(beginTrackingWithTouch:withEvent:)]) {
+        [_delegate beginTrackingWithTouch:touch withEvent:event];
+    }
+    
     return YES;
 }
 
@@ -682,6 +686,10 @@ NSUInteger DeviceSystemMajorVersion() {
     
     //redraw
     [self setNeedsLayout];
+    
+    if ([_delegate respondsToSelector:@selector(continueTrackingWithTouch:withEvent:)]) {
+        [_delegate continueTrackingWithTouch:touch withEvent:event];
+    }
 
     return YES;
 }
@@ -702,6 +710,10 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+    
+    if ([_delegate respondsToSelector:@selector(endTrackingWithTouch:withEvent:)]) {
+        [_delegate endTrackingWithTouch:touch withEvent:event];
+    }
 }
 
 @end

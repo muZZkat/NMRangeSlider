@@ -9,7 +9,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NMRangeSliderDelegate;
+
 @interface NMRangeSlider : UIControl
+
+@property (weak, nonatomic) id <NMRangeSliderDelegate> delegate;
 
 // default 0.0
 @property(assign, nonatomic) float minimumValue;
@@ -90,5 +94,15 @@
 - (void)setUpperValue:(float)upperValue animated:(BOOL) animated;
 
 - (void) setLowerValue:(float) lowerValue upperValue:(float) upperValue animated:(BOOL)animated;
+
+@end
+
+@protocol NMRangeSliderDelegate <NSObject>
+
+@optional
+
+-(void) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event;
+-(void) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event;
+-(void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event;
 
 @end

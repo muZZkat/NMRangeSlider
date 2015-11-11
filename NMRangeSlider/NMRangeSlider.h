@@ -9,7 +9,53 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NMRangeSliderDelegate <NSObject>
+
+@optional
+/**
+ *  When lower handle image view is selected.
+ *
+ *  @param view      The slider view.
+ *  @param imageView The lower image view.
+ */
+- (void)rangeSliderView:(UIView *)view didSelectLowerHandleImageView:(UIImageView *)imageView;
+
+/**
+ *  When upper handle image view is selected.
+ *
+ *  @param view      The slider view.
+ *  @param imageView The upper image view.
+ */
+- (void)rangeSliderView:(UIView *)view didSelectUpperHandleImageView:(UIImageView *)imageView;
+
+/**
+ *  When slider stopped moving.
+ *
+ *  @param view The slider view.
+ */
+- (void)rangeSliderViewDidEndSelect:(UIView *)view;
+
+/**
+ *  When lower handle image view did move.
+ *
+ *  @param view      The slider view.
+ *  @param imageView The lower image view.
+ */
+- (void)rangeSliderView:(UIView *)view didMoveLowerHandleImageView:(UIImageView *)imageView;
+
+/**
+ *  When upper handle image view did move.
+ *
+ *  @param view      The slider view.
+ *  @param imageView The upper image view.
+ */
+- (void)rangeSliderView:(UIView *)view didMoveUpperHandleImageView:(UIImageView *)imageView;
+
+@end
+
 @interface NMRangeSlider : UIControl
+
+@property (weak, nonatomic) id <NMRangeSliderDelegate> delegate;
 
 // default 0.0
 @property(assign, nonatomic) float minimumValue;

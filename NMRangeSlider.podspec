@@ -1,13 +1,14 @@
 Pod::Spec.new do |s|
-  s.name     = 'NMRangeSlider'
-  s.version  = '0.1.1'
-  s.license  = 'MIT'
-  s.summary  = 'A custom range slider. Forked from https://github.com/muZZkat/NMRangeSlider'
-  s.homepage = 'https://bitbucket.org/prolificinteractive/nmrangeslider'
-  s.authors  = { 'Prolific Interactive' => 'http://www.prolificinteractive.com' }
-  s.source   = { :git => 'git@bitbucket.org:prolificinteractive/nmrangeslider.git', :tag => '0.1.1' }
-  s.requires_arc = true
-  s.source_files = 'NMRangeSlider/*.{h,m}'
-  s.ios.deployment_target = '7.0'
-  s.resources = "NMRangeSlider/DefaultTheme/*.png", "NMRangeSlider/DefaultTheme7/*.png", "NMRangeSlider/MetalTheme/*.png"
+  s.name                = "NMRangeSlider"
+  s.version             = "1.2.2"
+  s.summary             = "A custom range slider for iOS."
+  s.homepage            = "https://github.com/muZZkat/NMRangeSlider"
+  s.license             = 'MIT'
+  s.author              = { "Murray Hughes" => "muzzkat@gmail.com" }
+  s.social_media_url    = 'https://twitter.com/muzzkat'
+  s.source              = { :git => "https://github.com/muZZkat/NMRangeSlider.git", :tag => 'v1.2.2'  }
+  s.platform            = :ios
+  s.source_files        = 'NMRangeSlider/*.{h,m}'
+  s.requires_arc        = true
+  s.resources           = "NMRangeSlider/DefaultTheme/*.png", "NMRangeSlider/DefaultTheme7/*.png", "NMRangeSlider/MetalTheme/*.png"
 end

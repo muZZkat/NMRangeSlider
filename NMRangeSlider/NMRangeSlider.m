@@ -453,7 +453,15 @@ NSUInteger DeviceSystemMajorVersion() {
     
     float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
     float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
-    
+
+    if (isnan(xLowerValue)) {
+        xLowerValue = 0.0f;
+    }
+
+    if (isnan(xUpperValue)) {
+        xUpperValue = 0.0f;
+    }
+
     retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
     retValue.size.width = xUpperValue-xLowerValue;
 
@@ -516,8 +524,13 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
+
+    if (isnan(xValue)) {
+        xValue = 0.0f;
+    }
+
     thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
-    
+
     return CGRectIntegral(thumbRect);
 
 }
@@ -612,14 +625,22 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         _lowerHandle.highlighted = YES;
         _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
+
+        if ([self.delegate respondsToSelector:@selector(rangeSliderView:didSelectLowerHandleImageView:)]) {
+            [self.delegate rangeSliderView:self didSelectLowerHandleImageView:_lowerHandle];
+        }
     }
-    
+
     if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_upperHandle.frame, self.upperTouchEdgeInsets), touchPoint))
     {
         _upperHandle.highlighted = YES;
         _upperTouchOffset = touchPoint.x - _upperHandle.center.x;
+
+        if ([self.delegate respondsToSelector:@selector(rangeSliderView:didSelectUpperHandleImageView:)]) {
+            [self.delegate rangeSliderView:self didSelectUpperHandleImageView:_upperHandle];
+        }
     }
-    
+
     _stepValueInternal= _stepValueContinuously ? _stepValue : 0.0f;
     
     return YES;
@@ -653,8 +674,12 @@ NSUInteger DeviceSystemMajorVersion() {
         {
             _lowerHandle.highlighted=NO;
         }
+
+        if ([self.delegate respondsToSelector:@selector(rangeSliderView:didMoveLowerHandleImageView:)]) {
+            [self.delegate rangeSliderView:self didMoveLowerHandleImageView:_lowerHandle];
+        }
     }
-    
+
     if(_upperHandle.highlighted )
     {
         float newValue = [self upperValueForCenterX:(touchPoint.x - _upperTouchOffset)];
@@ -671,8 +696,12 @@ NSUInteger DeviceSystemMajorVersion() {
         {
             _upperHandle.highlighted=NO;
         }
+
+        if ([self.delegate respondsToSelector:@selector(rangeSliderView:didMoveUpperHandleImageView:)]) {
+            [self.delegate rangeSliderView:self didMoveUpperHandleImageView:_lowerHandle];
+        }
     }
-     
+    
     
     //send the control event
     if(_continuous)
@@ -702,6 +731,10 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+
+    if ([self.delegate respondsToSelector:@selector(rangeSliderViewDidEndSelect:)]) {
+        [self.delegate rangeSliderViewDidEndSelect:self];
+    }
 }
 
 @end

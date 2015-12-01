@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NMRangeSlider.h"
+#import "NMVerticalRangeSlider.h"
 
 @interface NMDemoTVC : UITableViewController <NMRangeSliderDelegate>
 
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *upperLabel;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *programaticallyContainerCell;
+@property (weak, nonatomic) IBOutlet NMVerticalRangeSlider *verticalSlider;
 
 - (IBAction)labelSliderChanged:(NMRangeSlider*)sender;
 

@@ -33,6 +33,8 @@
     [self configureSteppedSliderAlternative];
     [self configureCrossOverSlider];
     [self configureProgramically];
+    
+    [self configureVerticalSlider];
 }
 
 
@@ -245,6 +247,19 @@
     [self.programaticallyContainerCell addSubview:rangeSlider];
 }
 
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - Vertical Sliders
+
+- (void) configureVerticalSlider {
+    float angle = M_PI / 2; // 90 degrees clockwise
+    _verticalSlider.layer.transform = CATransform3DMakeRotation(angle, 0, 0.0, 1.0);
+    
+    _verticalSlider.frame = CGRectMake(10, 10, 34, 156);
+    [_verticalSlider setLowerValue:0.2f];
+    [_verticalSlider setUpperValue:1.0f];
+}
 // ------------------------------------------------------------------------------------------------------
 
 #pragma mark -

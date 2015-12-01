@@ -71,6 +71,8 @@
 {
     self.standardSlider.lowerValue = 0.23;
     self.standardSlider.upperValue = 0.53;
+    
+    self.standardSlider.delegate = self;
 }
 
 
@@ -257,6 +259,22 @@
     }
 }
 
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - NMRangeSlider Delegate
+
+-(void) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"begin");
+}
+
+-(void) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"continue");
+}
+
+-(void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"end");
+}
 
 
 // ------------------------------------------------------------------------------------------------------

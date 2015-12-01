@@ -10,7 +10,7 @@
 
 #import "NMRangeSlider.h"
 
-@interface NMDemoTVC : UITableViewController
+@interface NMDemoTVC : UITableViewController <NMRangeSliderDelegate>
 
 @property (weak, nonatomic) IBOutlet NMRangeSlider *standardSlider;
 @property (weak, nonatomic) IBOutlet NMRangeSlider *metalSlider;

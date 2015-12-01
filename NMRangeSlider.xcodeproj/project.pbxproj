@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96D4FD951C0DBEFD00F29BB1 /* NMVerticalRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D4FD941C0DBEFD00F29BB1 /* NMVerticalRangeSlider.m */; };
+		96D4FD971C0DC23D00F29BB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96D4FD961C0DC23D00F29BB1 /* QuartzCore.framework */; };
 		EC36F93715CD0B96009A1A04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93615CD0B96009A1A04 /* UIKit.framework */; };
 		EC36F93915CD0B96009A1A04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93815CD0B96009A1A04 /* Foundation.framework */; };
 		EC36F93B15CD0B96009A1A04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93A15CD0B96009A1A04 /* CoreGraphics.framework */; };
@@ -58,6 +60,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		96D4FD931C0DBEFD00F29BB1 /* NMVerticalRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMVerticalRangeSlider.h; sourceTree = "<group>"; };
+		96D4FD941C0DBEFD00F29BB1 /* NMVerticalRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMVerticalRangeSlider.m; sourceTree = "<group>"; };
+		96D4FD961C0DC23D00F29BB1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EC36F93215CD0B96009A1A04 /* NMRangeSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NMRangeSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC36F93615CD0B96009A1A04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC36F93815CD0B96009A1A04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -121,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D4FD971C0DC23D00F29BB1 /* QuartzCore.framework in Frameworks */,
 				EC36F93715CD0B96009A1A04 /* UIKit.framework in Frameworks */,
 				EC36F93915CD0B96009A1A04 /* Foundation.framework in Frameworks */,
 				EC36F93B15CD0B96009A1A04 /* CoreGraphics.framework in Frameworks */,
@@ -152,6 +158,7 @@
 		EC36F93515CD0B96009A1A04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96D4FD961C0DC23D00F29BB1 /* QuartzCore.framework */,
 				EC36F93615CD0B96009A1A04 /* UIKit.framework */,
 				EC36F93815CD0B96009A1A04 /* Foundation.framework */,
 				EC36F93A15CD0B96009A1A04 /* CoreGraphics.framework */,
@@ -196,6 +203,8 @@
 				EC36F95D15CD0BF8009A1A04 /* MetalTheme */,
 				EC36F96615CD0BF8009A1A04 /* NMRangeSlider.h */,
 				EC36F96715CD0BF8009A1A04 /* NMRangeSlider.m */,
+				96D4FD931C0DBEFD00F29BB1 /* NMVerticalRangeSlider.h */,
+				96D4FD941C0DBEFD00F29BB1 /* NMVerticalRangeSlider.m */,
 			);
 			name = NMRangeSlider;
 			path = ../NMRangeSlider;
@@ -369,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC36F94315CD0B96009A1A04 /* main.m in Sources */,
+				96D4FD951C0DBEFD00F29BB1 /* NMVerticalRangeSlider.m in Sources */,
 				EC36F94715CD0B96009A1A04 /* NMAppDelegate.m in Sources */,
 				EC36F96815CD0D4A009A1A04 /* NMRangeSlider.m in Sources */,
 				EC36F97B15CD0F30009A1A04 /* NMDemoTVC.m in Sources */,

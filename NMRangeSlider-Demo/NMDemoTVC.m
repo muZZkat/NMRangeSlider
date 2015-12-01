@@ -33,6 +33,8 @@
     [self configureSteppedSliderAlternative];
     [self configureCrossOverSlider];
     [self configureProgramically];
+    
+    [self configureVerticalSlider];
 }
 
 
@@ -71,6 +73,8 @@
 {
     self.standardSlider.lowerValue = 0.23;
     self.standardSlider.upperValue = 0.53;
+    
+    self.standardSlider.delegate = self;
 }
 
 
@@ -246,6 +250,19 @@
 // ------------------------------------------------------------------------------------------------------
 
 #pragma mark -
+#pragma mark - Vertical Sliders
+
+- (void) configureVerticalSlider {
+    float angle = M_PI / 2; // 90 degrees clockwise
+    _verticalSlider.layer.transform = CATransform3DMakeRotation(angle, 0, 0.0, 1.0);
+    
+    _verticalSlider.frame = CGRectMake(10, 10, 34, 156);
+    [_verticalSlider setLowerValue:0.2f];
+    [_verticalSlider setUpperValue:1.0f];
+}
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -257,6 +274,22 @@
     }
 }
 
+// ------------------------------------------------------------------------------------------------------
+
+#pragma mark -
+#pragma mark - NMRangeSlider Delegate
+
+-(void) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"begin");
+}
+
+-(void) continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"continue");
+}
+
+-(void) endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"end");
+}
 
 
 // ------------------------------------------------------------------------------------------------------

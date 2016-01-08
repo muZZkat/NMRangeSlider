@@ -582,7 +582,7 @@ NSUInteger DeviceSystemMajorVersion() {
     self.lowerHandle.highlightedImage = self.lowerHandleImageHighlighted;
     self.lowerHandle.hidden = self.lowerHandleHidden;
     
-    // Layoput the upper handle
+    // Layout the upper handle
     self.upperHandle.frame = [self thumbRectForValue:_upperValue image:self.upperHandleImageNormal];
     self.upperHandle.image = self.upperHandleImageNormal;
     self.upperHandle.highlightedImage = self.upperHandleImageHighlighted;

@@ -55,6 +55,9 @@
 @property (assign, nonatomic) BOOL lowerHandleHidden;
 @property (assign, nonatomic) BOOL upperHandleHidden;
 
+@property (assign, nonatomic) BOOL roundedLowerTrackBackground;
+@property (assign, nonatomic) BOOL roundedUpperTrackBackground;
+
 @property (assign, nonatomic) float lowerHandleHiddenWidth;
 @property (assign, nonatomic) float upperHandleHiddenWidth;
 
@@ -72,6 +75,9 @@
 @property(retain, nonatomic) UIImage* upperHandleImageHighlighted;
 
 @property(retain, nonatomic) UIImage* trackImage;
+
+@property(retain, nonatomic) UIImage* lowerTrackBackgroundImage;
+@property(retain, nonatomic) UIImage* upperTrackBackgroundImage;
 
 // track image when lower value is higher than the upper value (eg. when minimum range is negative
 @property(retain, nonatomic) UIImage* trackCrossedOverImage;

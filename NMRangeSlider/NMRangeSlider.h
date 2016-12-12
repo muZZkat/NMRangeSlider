@@ -91,4 +91,8 @@
 
 - (void) setLowerValue:(float) lowerValue upperValue:(float) upperValue animated:(BOOL)animated;
 
+//Setting the accessibility
+- (void)setAccessibilityLabelOfLowerHandle:(NSString*)lowerHandleLabel
+                            andUpperHandle:(NSString*)upperHandleLabel;
+
 @end

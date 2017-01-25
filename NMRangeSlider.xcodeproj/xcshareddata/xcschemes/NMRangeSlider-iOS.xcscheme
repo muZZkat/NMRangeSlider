@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "37F040771E38DC2800548C03"
-               BuildableName = "NMRangeSlider-iOS.framework"
+               BuildableName = "NMRangeSlider.framework"
                BlueprintName = "NMRangeSlider-iOS"
                ReferencedContainer = "container:NMRangeSlider.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37F040771E38DC2800548C03"
-            BuildableName = "NMRangeSlider-iOS.framework"
+            BuildableName = "NMRangeSlider.framework"
             BlueprintName = "NMRangeSlider-iOS"
             ReferencedContainer = "container:NMRangeSlider.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37F040771E38DC2800548C03"
-            BuildableName = "NMRangeSlider-iOS.framework"
+            BuildableName = "NMRangeSlider.framework"
             BlueprintName = "NMRangeSlider-iOS"
             ReferencedContainer = "container:NMRangeSlider.xcodeproj">
          </BuildableReference>

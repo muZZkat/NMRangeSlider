@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
   s.platform            = :ios
   s.source_files        = 'NMRangeSlider/*.{h,m}'
   s.requires_arc        = true
-  s.resources           = "NMRangeSlider/Assets/*.xcassets"
+  s.resources           = "NMRangeSlider/Media/*.xcassets"
 end

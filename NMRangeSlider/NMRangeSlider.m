@@ -233,10 +233,12 @@ NSUInteger DeviceSystemMajorVersion() {
 //ON-Demand images. If the images are not set, then the default values are loaded.
 
 - (UIImage *)imageFromBundle:(NSString*)imageName {
-//    NSBundle* bundle = [NSBundle bundleForClass:[NMRangeSlider class]];
+    NSBundle* bundle = [NSBundle bundleForClass:[NMRangeSlider class]];
 //    NSString *imagePath = [bundle pathForResource:imageName ofType:@"png"];
 //    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-    return [UIImage imageNamed:imageName];
+//    return image;
+    UIImage *img = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
+    return img;
 }
 
 - (UIImage *)trackBackgroundImage

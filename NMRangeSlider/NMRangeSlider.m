@@ -238,6 +238,8 @@ NSUInteger DeviceSystemMajorVersion() {
 //    NSString *imagePath = [bundle pathForResource:imageName ofType:@"png"];
 //    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
 //    return image;
+    NSLog(@"image name: %@ bundle: %@ class:%@",imageName,bundle,cls);
+    
     UIImage *img = [UIImage imageNamed:imageName inBundle:bundle compatibleWithTraitCollection:nil];
     return img;
 }

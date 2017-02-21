@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		98FB72061E317A16008A53BC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98FB72051E317A16008A53BC /* Media.xcassets */; };
+		982E791E1E5CF45000C94660 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 982E791D1E5CF45000C94660 /* Media.xcassets */; };
 		EC36F93715CD0B96009A1A04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93615CD0B96009A1A04 /* UIKit.framework */; };
 		EC36F93915CD0B96009A1A04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93815CD0B96009A1A04 /* Foundation.framework */; };
 		EC36F93B15CD0B96009A1A04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC36F93A15CD0B96009A1A04 /* CoreGraphics.framework */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		98FB72051E317A16008A53BC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		982E791D1E5CF45000C94660 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = NMRangeSlider/Media.xcassets; sourceTree = "<group>"; };
 		EC36F93215CD0B96009A1A04 /* NMRangeSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NMRangeSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC36F93615CD0B96009A1A04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC36F93815CD0B96009A1A04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -61,7 +61,7 @@
 		EC36F92715CD0B96009A1A04 = {
 			isa = PBXGroup;
 			children = (
-				98FB72051E317A16008A53BC /* Media.xcassets */,
+				982E791D1E5CF45000C94660 /* Media.xcassets */,
 				EC53B5F61993875B00C81C7E /* NMRangeSlider.podspec */,
 				EC36F93C15CD0B96009A1A04 /* NMRangeSlider-Demo */,
 				EC36F93515CD0B96009A1A04 /* Frameworks */,
@@ -214,10 +214,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				982E791E1E5CF45000C94660 /* Media.xcassets in Resources */,
 				EC36F94115CD0B96009A1A04 /* InfoPlist.strings in Resources */,
 				EC36F94A15CD0B96009A1A04 /* MainStoryboard.storyboard in Resources */,
 				EC53B5F71993875B00C81C7E /* NMRangeSlider.podspec in Resources */,
-				98FB72061E317A16008A53BC /* Media.xcassets in Resources */,
 				EC36F9A615CE1295009A1A04 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

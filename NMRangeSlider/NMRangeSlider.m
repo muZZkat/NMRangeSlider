@@ -10,7 +10,7 @@
 
 
 #define IS_PRE_IOS7() (DeviceSystemMajorVersion() < 7)
-NSUInteger DeviceSystemMajorVersion();
+NSUInteger DeviceSystemMajorVersion(void);
 
 NSUInteger DeviceSystemMajorVersion() {
     static NSUInteger _deviceSystemMajorVersion = -1;

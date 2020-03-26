@@ -608,13 +608,13 @@ NSUInteger DeviceSystemMajorVersion() {
     //Check both buttons upper and lower thumb handles because
     //they could be on top of each other.
     
-    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_lowerHandle.frame, self.lowerTouchEdgeInsets), touchPoint))
+    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_lowerHandle.frame, self.lowerTouchEdgeInsets), touchPoint) && !_lowerHandleHidden)
     {
         _lowerHandle.highlighted = YES;
         _lowerTouchOffset = touchPoint.x - _lowerHandle.center.x;
     }
     
-    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_upperHandle.frame, self.upperTouchEdgeInsets), touchPoint))
+    if(CGRectContainsPoint(UIEdgeInsetsInsetRect(_upperHandle.frame, self.upperTouchEdgeInsets), touchPoint) && !_upperHandleHidden)
     {
         _upperHandle.highlighted = YES;
         _upperTouchOffset = touchPoint.x - _upperHandle.center.x;
@@ -622,7 +622,7 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _stepValueInternal= _stepValueContinuously ? _stepValue : 0.0f;
     
-    return YES;
+    return _lowerHandle.highlighted || _upperHandle.highlighted;
 }
 
 
